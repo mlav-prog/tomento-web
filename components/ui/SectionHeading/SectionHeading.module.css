@@ -1,0 +1,8 @@
+.heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; margin-bottom: 42px; }
+.eyebrow { margin: 0 0 12px; color: var(--color-sage); font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; }
+.heading h2 { max-width: 680px; margin: 0; color: var(--color-green-deep); font-family: var(--font-display); font-size: clamp(2.4rem, 4.5vw, 4.6rem); font-weight: 400; line-height: 1; letter-spacing: -.035em; }
+.description { max-width: 430px; margin: 0; color: #5b6359; line-height: 1.65; }
+.light h2 { color: var(--color-white); }
+.light .eyebrow { color: var(--color-beige); }
+.light .description { color: rgba(255,255,255,.68); }
+@media (max-width: 700px) { .heading { align-items: flex-start; flex-direction: column; margin-bottom: 30px; } }
