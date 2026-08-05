@@ -1,5 +1,6 @@
 import Image from "next/image";
 import WhatsAppButton from "@/components/ui/WhatsAppButton/WhatsAppButton";
+import { assetPath } from "@/lib/assets";
 import styles from "./Header.module.css";
 
 const navigation = [
@@ -15,7 +16,7 @@ export default function Header() {
       <div className={styles.inner}>
         <a className={styles.brand} href="#inicio" aria-label="Tomento Capilar, inicio">
           <Image
-            src="/images/brand/logo-white.png"
+            src={assetPath("/images/brand/logo-white.png")}
             alt="Tomento Capilar"
             width={343}
             height={157}
