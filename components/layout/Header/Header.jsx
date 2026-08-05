@@ -1,5 +1,6 @@
 import Image from "next/image";
 import WhatsAppButton from "@/components/ui/WhatsAppButton/WhatsAppButton";
+import MobileNavigation from "./MobileNavigation";
 import { assetPath } from "@/lib/assets";
 import styles from "./Header.module.css";
 
@@ -35,6 +36,8 @@ export default function Header() {
         <div className={styles.action}>
           <WhatsAppButton variant="outline">Consultar</WhatsAppButton>
         </div>
+
+        <MobileNavigation items={navigation} />
       </div>
     </header>
   );
