@@ -18,8 +18,8 @@ export default function Header() {
           <Image
             src={assetPath("/images/brand/logo-white.png")}
             alt="Tomento Capilar"
-            width={343}
-            height={157}
+            width={842}
+            height={595}
             priority
           />
         </a>

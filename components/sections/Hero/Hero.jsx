@@ -22,7 +22,10 @@ export default function Hero() {
 
           <div className={styles.credentials}>
             <span>Eliana Judith De Vito</span>
-            <span>Tricoterapeuta · Matrícula 16.509</span>
+            <span>
+              Lic. en Instrumentación Quirúrgica · Diplomada en Microimplante Capilar ·
+              Matrícula 16.509 · Tricoterapeuta
+            </span>
           </div>
         </div>
 
