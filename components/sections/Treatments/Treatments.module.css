@@ -1,4 +1,4 @@
-.section { padding: clamp(76px,10vw,140px) 0; background: rgba(245,242,235,.96); }
+.section { padding: clamp(76px,10vw,140px) 0; background: rgba(245,242,235,.58); }
 .inner { width: calc(100% - 48px); max-width: var(--content-width); margin: auto; }
 .grid { display: grid; grid-template-columns: 1.16fr .92fr .92fr; gap: 16px; }
 .card { min-height: 390px; padding: 28px; border: 1px solid rgba(45,61,45,.16); border-radius: 18px; display: flex; flex-direction: column; justify-content: space-between; color: var(--color-green-deep); background: rgba(255,255,255,.66); }

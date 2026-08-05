@@ -1,4 +1,4 @@
-.section { padding: clamp(76px,10vw,140px) 0; background: rgba(138,124,108,.93); }
+.section { padding: clamp(76px,10vw,140px) 0; background: rgba(138,124,108,.58); }
 .inner { width: calc(100% - 48px); max-width: var(--content-width); margin: auto; display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,.85fr); gap: clamp(50px,8vw,120px); align-items: end; }
 .eyebrow { margin: 0 0 16px; color: var(--color-green-deep); font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; }
 .inner h2 { max-width: 760px; margin: 0; font-family: var(--font-display); font-size: clamp(2.8rem,5.5vw,5.8rem); font-weight: 400; line-height: .98; letter-spacing: -.04em; }

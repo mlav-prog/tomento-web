@@ -36,12 +36,19 @@ body {
   color: var(--color-white);
   background-color: var(--color-green-deep);
   background-image:
-    linear-gradient(rgba(24, 37, 25, 0.72), rgba(24, 37, 25, 0.84)),
+    linear-gradient(rgba(24, 37, 25, 0.48), rgba(24, 37, 25, 0.64)),
     var(--leaf-background);
   background-position: center top;
-  background-size: cover;
+  background-size: auto, 65% auto;
+  background-attachment: fixed;
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
+}
+
+@media (max-width: 700px) {
+  body {
+    background-size: auto, 85% auto;
+  }
 }
 
 a {
@@ -57,6 +64,16 @@ a {
 img {
   display: block;
   max-width: 100%;
+}
+
+section[id] {
+  scroll-margin-top: 120px;
+}
+
+@media (max-width: 520px) {
+  section[id] {
+    scroll-margin-top: 104px;
+  }
 }
 
 main,

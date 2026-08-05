@@ -1,4 +1,4 @@
-.section { padding: clamp(76px,10vw,140px) 0; background: rgba(247,245,239,.96); }
+.section { padding: clamp(76px,10vw,140px) 0; background: rgba(247,245,239,.58); }
 .inner { width: calc(100% - 48px); max-width: var(--content-width); margin: auto; }
 .list { border-top: 1px solid rgba(45,61,45,.2); }
 .item { min-height: 82px; display: grid; grid-template-columns: 56px 1fr auto; align-items: center; gap: 20px; color: var(--color-green-deep); border-bottom: 1px solid rgba(45,61,45,.2); }

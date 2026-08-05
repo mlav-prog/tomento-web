@@ -1,4 +1,4 @@
-.section { padding: clamp(76px,10vw,140px) 0; background: rgba(206,192,178,.95); }
+.section { padding: clamp(76px,10vw,140px) 0; background: rgba(206,192,178,.56); }
 .inner { width: calc(100% - 48px); max-width: var(--content-width); margin: auto; }
 .grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
 .case { overflow: hidden; border-radius: 18px; color: var(--color-green-deep); background: rgba(255,255,255,.7); }

@@ -1,6 +1,6 @@
 .footer { padding: 34px 0; background: rgba(20,31,21,.94); border-top: 1px solid rgba(255,255,255,.12); }
-.inner { width: calc(100% - 48px); max-width: var(--content-width); margin: auto; display: grid; grid-template-columns: 150px 1fr auto; align-items: center; gap: 32px; }
-.inner img { width: 145px; height: auto; }
+.inner { width: calc(100% - 48px); max-width: var(--content-width); margin: auto; display: grid; grid-template-columns: 185px 1fr auto; align-items: center; gap: 32px; }
+.inner img { width: 175px; height: auto; }
 .inner p { margin: 0; color: rgba(255,255,255,.56); font-size: .75rem; }
 .inner div { display: flex; gap: 20px; color: rgba(255,255,255,.58); font-size: .7rem; }
 @media (max-width: 650px) { .inner { width: calc(100% - 32px); grid-template-columns: 1fr; } .inner div { justify-content: space-between; } }

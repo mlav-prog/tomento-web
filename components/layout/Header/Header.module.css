@@ -1,9 +1,10 @@
 .header {
-  position: absolute;
+  position: fixed;
   inset: 0 0 auto;
   z-index: 10;
   border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-  background: linear-gradient(rgba(18, 29, 19, 0.72), rgba(18, 29, 19, 0.16));
+  background: #0c150e;
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.28);
 }
 
 .inner {
@@ -12,13 +13,13 @@
   min-height: 112px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 180px 1fr 180px;
+  grid-template-columns: 220px 1fr 180px;
   align-items: center;
   gap: 32px;
 }
 
 .brand {
-  width: 138px;
+  width: 180px;
 }
 
 .brand img {
@@ -178,7 +179,7 @@
   }
 
   .brand {
-    width: 112px;
+    width: 145px;
   }
 }
 
@@ -188,7 +189,7 @@
   }
 
   .brand {
-    width: 100px;
+    width: 130px;
   }
 
   .mobilePanel {

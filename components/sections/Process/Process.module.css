@@ -1,4 +1,4 @@
-.section { padding: clamp(76px,10vw,140px) 0; background: rgba(35,50,36,.72); backdrop-filter: blur(3px); }
+.section { padding: clamp(76px,10vw,140px) 0; background: rgba(35,50,36,.62); backdrop-filter: blur(2px); }
 .inner { width: calc(100% - 48px); max-width: var(--content-width); margin: auto; }
 .steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 28px; }
 .steps article { padding-top: 20px; border-top: 1px solid rgba(206,192,178,.58); }
