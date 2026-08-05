@@ -1,5 +1,5 @@
 .section { padding: clamp(76px,10vw,140px) 0; background: rgba(206,192,178,.95); }
-.inner { width: min(100% - 48px,var(--content-width)); margin: auto; }
+.inner { width: calc(100% - 48px); max-width: var(--content-width); margin: auto; }
 .grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
 .case { overflow: hidden; border-radius: 18px; color: var(--color-green-deep); background: rgba(255,255,255,.7); }
 .comparison { min-height: 280px; display: grid; grid-template-columns: 1fr 1fr; }
@@ -9,4 +9,4 @@
 .case footer { padding: 16px 18px; display: flex; justify-content: space-between; gap: 10px; font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; }
 .case footer span+span { opacity: .55; }
 @media (max-width: 780px) { .grid { grid-template-columns: 1fr; } .comparison { min-height: 230px; } }
-@media (max-width: 480px) { .inner { width: min(100% - 32px,var(--content-width)); } }
+@media (max-width: 480px) { .inner { width: calc(100% - 32px); } }

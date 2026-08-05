@@ -7,7 +7,8 @@
 }
 
 .inner {
-  width: min(100% - 48px, var(--content-width));
+  width: calc(100% - 48px);
+  max-width: var(--content-width);
   min-height: 92px;
   margin: 0 auto;
   display: grid;
@@ -78,7 +79,7 @@
 
 @media (max-width: 520px) {
   .inner {
-    width: min(100% - 32px, var(--content-width));
+    width: calc(100% - 32px);
     min-height: 78px;
     grid-template-columns: 126px 1fr;
     gap: 16px;
@@ -89,7 +90,24 @@
   }
 
   .action a {
+    max-width: 100%;
     min-height: 42px;
     padding-inline: 16px;
+  }
+}
+
+@media (max-width: 360px) {
+  .inner {
+    grid-template-columns: 108px minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .brand {
+    width: 108px;
+  }
+
+  .action a {
+    padding-inline: 12px;
+    font-size: 0.74rem;
   }
 }
