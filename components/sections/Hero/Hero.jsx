@@ -7,10 +7,12 @@ export default function Hero() {
       <div className={styles.inner}>
         <div className={styles.content}>
           <p className={styles.eyebrow}>Microimplante capilar · Técnica FUE</p>
-          <h1>Un tratamiento pensado para recuperar tu cabello.</h1>
+          <h1>Sembramos el comienzo de una nueva etapa.</h1>
           <p className={styles.intro}>
-            Evaluación personalizada, técnica precisa y acompañamiento profesional
-            durante todo el proceso.
+            Cada gran cambio comienza con un primer paso, y nos alegra acompañarte en este
+            proceso. Gracias por permitirnos ser parte de este camino. Desde este momento
+            estaremos a tu lado en cada etapa, con un tratamiento personalizado, atención
+            profesional y el compromiso de brindarte el cuidado que este momento merece.
           </p>
 
           <div className={styles.actions}>
@@ -21,11 +23,8 @@ export default function Hero() {
           </div>
 
           <div className={styles.credentials}>
-            <span>Eliana Judith De Vito</span>
-            <span>
-              Lic. en Instrumentación Quirúrgica · Diplomada en Microimplante Capilar ·
-              Matrícula 16.509 · Tricoterapeuta
-            </span>
+            <span>Dr. Hernán Ramón Eduardo López</span>
+            <span>Médico especialista en implante capilar · Matrícula: MN 199837</span>
           </div>
         </div>
 

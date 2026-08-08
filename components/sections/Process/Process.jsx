@@ -5,7 +5,7 @@ const steps = [
   ["01", "Evaluación", "Conocemos tu caso, objetivos y antecedentes."],
   ["02", "Plan personalizado", "Definimos la alternativa más adecuada para vos."],
   ["03", "Tratamiento", "Realizamos el procedimiento con precisión y cuidado."],
-  ["04", "Seguimiento", "Acompañamos la evolución durante todo el proceso."],
+  ["04", "Seguimiento", "Realizamos un seguimiento personalizado de tu evolución durante todo el proceso, con controles en cada etapa, hasta que juntos logremos el resultado esperado."],
 ];
 
 export default function Process() {
