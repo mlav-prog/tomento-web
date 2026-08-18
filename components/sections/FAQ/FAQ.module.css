@@ -1,8 +1,15 @@
 .section { padding: clamp(76px,10vw,140px) 0; background: rgba(247,245,239,.58); }
 .inner { width: calc(100% - 48px); max-width: var(--content-width); margin: auto; }
 .list { border-top: 1px solid rgba(45,61,45,.2); }
-.item { min-height: 82px; display: grid; grid-template-columns: 56px 1fr auto; align-items: center; gap: 20px; color: var(--color-green-deep); border-bottom: 1px solid rgba(45,61,45,.2); }
-.item>span:first-child { color: var(--color-sage); font-size: .68rem; letter-spacing: .1em; }
-.item p { margin: 0; font-family: var(--font-display); font-size: clamp(1.25rem,2vw,1.75rem); }
-.item>span:last-child { font-size: 1.3rem; font-weight: 300; }
-@media (max-width: 480px) { .inner { width: calc(100% - 32px); } .item { grid-template-columns: 32px minmax(0,1fr) auto; gap: 10px; } }
+.item { color: var(--color-green-deep); border-bottom: 1px solid rgba(45,61,45,.2); }
+.item button { width: 100%; min-height: 88px; padding: 0; border: 0; display: grid; grid-template-columns: 56px minmax(0,1fr) auto; align-items: center; gap: 20px; color: inherit; background: transparent; text-align: left; cursor: pointer; }
+.number { color: var(--color-sage); font-size: .68rem; letter-spacing: .1em; }
+.question { font-family: var(--font-display); font-size: clamp(1.25rem,2vw,1.75rem); line-height: 1.2; }
+.symbol { font-size: 1.4rem; font-weight: 300; transition: transform .25s ease; }
+.open .symbol { transform: rotate(45deg); }
+.answerWrapper { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease; }
+.answerWrapper p { min-height: 0; overflow: hidden; max-width: 830px; margin: 0 60px 0 76px; color: rgba(32,46,33,.72); line-height: 1.75; }
+.open .answerWrapper { grid-template-rows: 1fr; }
+.open .answerWrapper p { margin-bottom: 30px; }
+.note { margin: 22px 0 0; color: rgba(32,46,33,.55); font-size: .72rem; line-height: 1.5; }
+@media (max-width: 580px) { .inner { width: calc(100% - 32px); } .item button { min-height: 78px; grid-template-columns: 32px minmax(0,1fr) auto; gap: 10px; } .question { font-size: 1.2rem; } .answerWrapper p { margin-right: 30px; margin-left: 42px; font-size: .9rem; } .open .answerWrapper p { margin-bottom: 24px; } }

@@ -23,8 +23,14 @@ export default function Hero() {
           </div>
 
           <div className={styles.credentials}>
-            <span>Dr. Hernán Ramón Eduardo López</span>
-            <span>Médico especialista en implante capilar · Matrícula: MN 199837</span>
+            <div className={styles.credential}>
+              <span>Eliana Judith De Vito</span>
+              <span>Lic. en Instrumentación Quirúrgica · Tricoterapeuta · Matrícula 16.509</span>
+            </div>
+            <div className={styles.credential}>
+              <span>Dr. Hernán Ramón Eduardo López</span>
+              <span>Médico especialista en implante capilar · Matrícula: MN 199837</span>
+            </div>
           </div>
         </div>
 

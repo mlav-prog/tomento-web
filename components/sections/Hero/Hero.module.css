@@ -89,14 +89,25 @@
 .credentials {
   margin-top: clamp(50px, 8vh, 90px);
   padding-top: 18px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 28px;
   color: rgba(255, 255, 255, 0.62);
   font-size: 0.72rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.credential {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  line-height: 1.5;
+}
+
+.credential span:first-child {
+  color: rgba(255, 255, 255, 0.86);
 }
 
 .visual {
@@ -224,7 +235,7 @@
 
   .credentials {
     align-items: flex-start;
-    flex-direction: column;
+    grid-template-columns: 1fr;
   }
 }
 

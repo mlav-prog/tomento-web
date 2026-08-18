@@ -1,6 +1,4 @@
 import ContactForm from "./ContactForm";
-import { site } from "@/content/site";
-import { createWhatsAppUrl } from "@/lib/whatsapp";
 import styles from "./Contact.module.css";
 
 export default function Contact() {
@@ -17,20 +15,9 @@ export default function Contact() {
           <ContactForm />
           <aside className={styles.aside}>
             <article>
-              <span>Turnos</span>
-              <h3>Agendá tu evaluación</h3>
-              <p>Coordiná el día y horario para realizar tu consulta.</p>
-              <a
-                className={styles.primaryLink}
-                href={createWhatsAppUrl(
-                  site.whatsapp,
-                  "Hola, quisiera coordinar una evaluación en Tomento Capilar. ¿Qué disponibilidad tienen?",
-                )}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Reservar por WhatsApp
-              </a>
+              <span>Canal directo</span>
+              <h3>Tu consulta llega por WhatsApp</h3>
+              <p>Al enviar el formulario se abrirá WhatsApp con tus datos y tu mensaje preparados para enviarlos directamente a Tomento.</p>
             </article>
             <article>
               <span>Redes</span>

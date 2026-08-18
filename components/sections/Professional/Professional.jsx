@@ -1,18 +1,23 @@
+import Image from "next/image";
 import SectionHeading from "@/components/ui/SectionHeading/SectionHeading";
 import styles from "./Professional.module.css";
 
 const professionals = [
   {
-    name: "Eliana Judith De Vito",
+    name: "Lic. Judith De Vito",
     role: "Lic. en Instrumentación Quirúrgica · Diplomada en Microimplante Capilar · Tricoterapeuta",
     bio: "Acompañamiento personalizado durante la evaluación, el tratamiento y el seguimiento de cada paciente.",
     license: "Matrícula profesional 16.509",
+    image: "/images/professionals/judith-de-vito.jpg",
+    imageAlt: "Licenciada Judith De Vito, profesional de Tomento Capilar",
   },
   {
-    name: "Dr. Hernán Ramón Eduardo López",
+    name: "Dr. Hernán López",
     role: "Médico · Especialista en implante capilar con técnica FUE",
     bio: "Enfoque médico orientado a la planificación personalizada y a la obtención de resultados naturales.",
     license: "Matrícula: MN 199837",
+    image: "/images/professionals/hernan-lopez.jpg",
+    imageAlt: "Doctor Hernán López, médico especialista en implante capilar",
   },
 ];
 
@@ -25,8 +30,14 @@ export default function Professional() {
         <div className={styles.list}>
           {professionals.map((professional, index) => (
             <article className={styles.profile} key={professional.name}>
-              <div className={styles.placeholder}>
-                <span>Espacio para retrato profesional</span>
+              <div className={styles.portrait}>
+                <Image
+                  src={professional.image}
+                  alt={professional.imageAlt}
+                  fill
+                  sizes="(max-width: 760px) 100vw, 38vw"
+                  priority={index === 0}
+                />
               </div>
               <div className={styles.content}>
                 <span className={styles.number}>0{index + 1}</span>

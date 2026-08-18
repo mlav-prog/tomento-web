@@ -3,14 +3,14 @@
 .wrapper > header { max-width: 820px; margin-bottom: clamp(54px,7vw,90px); }
 .list { display: grid; gap: clamp(72px,9vw,120px); }
 .profile { display: grid; grid-template-columns: minmax(280px,.8fr) minmax(0,1.2fr); gap: clamp(40px,8vw,110px); align-items: center; }
-.profile:nth-child(even) .placeholder { order: 2; }
+.profile:nth-child(even) .portrait { order: 2; }
 .profile:nth-child(even) .content { order: 1; }
-.placeholder { aspect-ratio: .86; border: 1px solid rgba(255,255,255,.22); border-radius: 50% 50% 18px 18px; display: grid; place-items: center; background: linear-gradient(145deg,rgba(206,192,178,.16),rgba(112,129,97,.18)); }
-.placeholder span { max-width: 150px; color: rgba(255,255,255,.52); font-size: .68rem; letter-spacing: .11em; line-height: 1.5; text-align: center; text-transform: uppercase; }
+.portrait { position: relative; aspect-ratio: .86; overflow: hidden; border: 1px solid rgba(255,255,255,.22); border-radius: 50% 50% 18px 18px; background: linear-gradient(145deg,rgba(206,192,178,.16),rgba(112,129,97,.18)); }
+.portrait img { object-fit: cover; object-position: center 24%; filter: saturate(.8) contrast(.96); }
 .number { color: var(--color-beige); font-size: .68rem; letter-spacing: .14em; }
 .content h3 { max-width: 720px; margin: 18px 0 24px; font-family: var(--font-display); font-size: clamp(2.6rem,5vw,5.2rem); font-weight: 400; letter-spacing: -.04em; line-height: .98; text-wrap: balance; }
 .role { max-width: 680px; color: var(--color-beige); line-height: 1.6; }
 .bio { max-width: 650px; margin-top: 24px; color: rgba(255,255,255,.68); line-height: 1.75; }
 .license { width: fit-content; margin-top: 36px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.24); color: rgba(255,255,255,.6); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; }
-@media (max-width: 760px) { .profile { grid-template-columns: 1fr; } .profile:nth-child(even) .placeholder,.profile:nth-child(even) .content { order: initial; } .placeholder { width: min(100%,480px); } }
+@media (max-width: 760px) { .profile { grid-template-columns: 1fr; } .profile:nth-child(even) .portrait,.profile:nth-child(even) .content { order: initial; } .portrait { width: min(100%,480px); } }
 @media (max-width: 480px) { .wrapper { width: calc(100% - 32px); } .content h3 { font-size: clamp(2.5rem,12vw,3.6rem); } }
