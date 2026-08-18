@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import SectionHeading from "@/components/ui/SectionHeading/SectionHeading";
+import { assetPath } from "@/lib/assets";
 import styles from "./Treatments.module.css";
 
 const treatments = [
@@ -91,7 +92,7 @@ export default function Treatments() {
           >
             <button className={styles.closeButton} type="button" onClick={() => setActiveTreatment(null)} aria-label="Cerrar información del tratamiento">×</button>
             <div className={styles.modalImage}>
-              <Image src={activeTreatment.image} alt={activeTreatment.imageAlt} fill sizes="(max-width: 760px) 100vw, 44vw" />
+              <Image src={assetPath(activeTreatment.image)} alt={activeTreatment.imageAlt} fill sizes="(max-width: 760px) 100vw, 44vw" />
             </div>
             <div className={styles.modalContent}>
               <span className={styles.modalTag}>{activeTreatment.tag}</span>

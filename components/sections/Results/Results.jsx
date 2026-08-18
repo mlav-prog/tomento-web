@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import SectionHeading from "@/components/ui/SectionHeading/SectionHeading";
+import { assetPath } from "@/lib/assets";
 import styles from "./Results.module.css";
 
 const cases = [
@@ -73,7 +74,7 @@ export default function Results() {
             <div className={styles.comparison}>
               <figure>
                 <Image
-                  src={activeCase.before}
+                  src={assetPath(activeCase.before)}
                   alt={`${activeCase.view} antes del tratamiento capilar`}
                   fill
                   sizes="(max-width: 780px) 50vw, 28vw"
@@ -82,7 +83,7 @@ export default function Results() {
               </figure>
               <figure>
                 <Image
-                  src={activeCase.after}
+                  src={assetPath(activeCase.after)}
                   alt={`${activeCase.view} durante la evolución capilar`}
                   fill
                   sizes="(max-width: 780px) 50vw, 28vw"

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import SectionHeading from "@/components/ui/SectionHeading/SectionHeading";
+import { assetPath } from "@/lib/assets";
 import styles from "./Professional.module.css";
 
 const professionals = [
@@ -32,7 +33,7 @@ export default function Professional() {
             <article className={styles.profile} key={professional.name}>
               <div className={styles.portrait}>
                 <Image
-                  src={professional.image}
+                  src={assetPath(professional.image)}
                   alt={professional.imageAlt}
                   fill
                   sizes="(max-width: 760px) 100vw, 38vw"
