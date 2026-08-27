@@ -1,5 +1,5 @@
 .section {
-  padding: clamp(76px, 10vw, 140px) 0;
+  padding: clamp(60px, 7.5vw, 108px) 0;
   background: rgba(206, 192, 178, 0.56);
 }
 
@@ -85,7 +85,9 @@
 }
 
 .caseInfo a {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
   padding-bottom: 5px;
   border-bottom: 1px solid currentColor;
   color: var(--color-green-deep);

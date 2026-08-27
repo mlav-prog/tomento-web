@@ -1,5 +1,6 @@
 import { createWhatsAppUrl } from "@/lib/whatsapp";
 import { site } from "@/content/site";
+import ArrowIcon from "@/components/ui/ArrowIcon/ArrowIcon";
 import styles from "./WhatsAppButton.module.css";
 
 export default function WhatsAppButton({ children, variant = "solid" }) {
@@ -12,7 +13,7 @@ export default function WhatsAppButton({ children, variant = "solid" }) {
       aria-label={`${children}. Abre WhatsApp en una pestaña nueva`}
     >
       <span>{children}</span>
-      <span aria-hidden="true">↗</span>
+      <ArrowIcon />
     </a>
   );
 }

@@ -88,3 +88,19 @@ div {
   color: var(--color-green-deep);
   background: var(--color-beige);
 }
+
+.reveal-section {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+
+.reveal-section.reveal-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal-section { opacity: 1; transform: none; transition: none; }
+}

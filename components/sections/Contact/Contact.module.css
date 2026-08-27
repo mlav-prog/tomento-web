@@ -1,4 +1,4 @@
-.section { padding: clamp(76px,10vw,140px) 0; color: var(--color-green-deep); background: rgba(245,242,235,.82); }
+.section { padding: clamp(60px,7.5vw,108px) 0; color: var(--color-green-deep); background: rgba(245,242,235,.82); }
 .inner { width: calc(100% - 48px); max-width: var(--content-width); margin: auto; }
 .heading { max-width: 720px; margin: 0 auto 48px; text-align: center; }
 .eyebrow { width: fit-content; margin: 0 auto 16px; padding: 8px 14px; border-radius: 999px; color: var(--color-taupe); background: rgba(138,124,108,.12); font-size: .68rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
@@ -6,7 +6,7 @@
 .heading > p:last-child { margin: 22px auto 0; color: rgba(32,46,33,.7); line-height: 1.6; }
 .contactGrid { display: grid; grid-template-columns: minmax(0,1.35fr) minmax(300px,.8fr); gap: 20px; align-items: start; }
 .form,.aside article,.locationHeader { border: 1px solid rgba(45,61,45,.15); border-radius: 16px; background: rgba(255,255,255,.72); box-shadow: 0 18px 50px rgba(32,46,33,.07); }
-.form { padding: clamp(24px,4vw,40px); }
+.form { padding: clamp(24px,4vw,40px); scroll-margin-top: 110px; }
 .form h3,.aside h3 { margin: 0 0 20px; font-size: 1.15rem; }
 .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 .form label { display: grid; gap: 8px; color: var(--color-green); font-size: .76rem; font-weight: 700; }
@@ -16,6 +16,8 @@
 .form textarea { resize: vertical; }
 .form button,.primaryLink,.secondaryLink,.locationHeader a { width: fit-content; border: 0; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; cursor: pointer; }
 .form button { margin-top: 22px; padding: 14px 20px; color: white; background: var(--color-green); }
+.selectionNotice { margin: 18px 0 0; padding: 12px 14px; border: 1px solid rgba(112,129,97,.25); border-radius: 9px; color: var(--color-green-deep); background: rgba(112,129,97,.12); font-size: .78rem; line-height: 1.5; }
+.privacyNote { max-width: 540px; margin: 14px 0 0; color: rgba(32,46,33,.58); font-size: .7rem; line-height: 1.5; }
 .aside { display: grid; gap: 20px; }
 .aside article { padding: 28px; }
 .aside article > span,.locationHeader span { color: var(--color-taupe); font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }

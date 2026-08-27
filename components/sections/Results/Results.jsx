@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import SectionHeading from "@/components/ui/SectionHeading/SectionHeading";
+import ArrowIcon from "@/components/ui/ArrowIcon/ArrowIcon";
 import { assetPath } from "@/lib/assets";
 import styles from "./Results.module.css";
 
@@ -41,7 +42,7 @@ export default function Results() {
       <div className={styles.inner}>
         <SectionHeading
           eyebrow="Casos reales"
-          title="Evoluciones que cuentan una historia."
+          title="Evoluciones que cuentan una historia"
           description="Cada proceso es único. Te mostramos registros reales del seguimiento realizado por el equipo de Tomento."
         />
 
@@ -52,10 +53,10 @@ export default function Results() {
             </span>
             <div className={styles.actions}>
               <button type="button" onClick={showPrevious} aria-label="Ver comparación anterior">
-                ‹
+                <ArrowIcon direction="left" />
               </button>
               <button type="button" onClick={showNext} aria-label="Ver comparación siguiente">
-                ›
+                <ArrowIcon direction="right" />
               </button>
             </div>
           </div>
@@ -68,7 +69,7 @@ export default function Results() {
                 Comparación fotográfica del mismo paciente durante su proceso de
                 evolución y seguimiento profesional.
               </p>
-              <a href="#contacto">Consultar mi caso ↗</a>
+              <a href="#contacto">Consultar mi caso <ArrowIcon /></a>
             </div>
 
             <div className={styles.comparison}>

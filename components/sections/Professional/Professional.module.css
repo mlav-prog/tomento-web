@@ -1,4 +1,4 @@
-.section { padding: clamp(76px,10vw,140px) 0; background: rgba(33,47,34,.72); backdrop-filter: blur(2px); }
+.section { padding: clamp(60px,7.5vw,108px) 0; background: rgba(33,47,34,.72); backdrop-filter: blur(2px); }
 .wrapper { width: calc(100% - 48px); max-width: var(--content-width); margin: auto; }
 .wrapper > header { max-width: 820px; margin-bottom: clamp(54px,7vw,90px); }
 .list { display: grid; gap: clamp(72px,9vw,120px); }

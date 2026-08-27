@@ -7,7 +7,7 @@ export default function Contact() {
       <div className={styles.inner}>
         <header className={styles.heading}>
           <p className={styles.eyebrow}>Contacto</p>
-          <h2>Solicitá tu evaluación.</h2>
+          <h2>Solicitá tu evaluación</h2>
           <p>Completá el formulario y enviá tu consulta directamente por WhatsApp.</p>
         </header>
 

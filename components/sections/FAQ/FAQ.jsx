@@ -40,14 +40,14 @@ const questions = [
 ];
 
 export default function FAQ() {
-  const [openIndex, setOpenIndex] = useState(0);
+  const [openIndex, setOpenIndex] = useState(null);
 
   return (
     <section className={styles.section} id="preguntas">
       <div className={styles.inner}>
         <SectionHeading
           eyebrow="Información útil"
-          title="Preguntas frecuentes."
+          title="Preguntas frecuentes"
           description="Respuestas generales para conocer los tratamientos y el proceso de atención en Tomento."
         />
 

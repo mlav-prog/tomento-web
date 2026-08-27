@@ -1,4 +1,7 @@
+import Image from "next/image";
 import WhatsAppButton from "@/components/ui/WhatsAppButton/WhatsAppButton";
+import ArrowIcon from "@/components/ui/ArrowIcon/ArrowIcon";
+import { assetPath } from "@/lib/assets";
 import styles from "./Hero.module.css";
 
 export default function Hero() {
@@ -7,7 +10,7 @@ export default function Hero() {
       <div className={styles.inner}>
         <div className={styles.content}>
           <p className={styles.eyebrow}>Microimplante capilar · Técnica FUE</p>
-          <h1>Sembramos el comienzo de una nueva etapa.</h1>
+          <h1>Sembramos el comienzo de una nueva etapa</h1>
           <p className={styles.intro}>
             Cada gran cambio comienza con un primer paso, y nos alegra acompañarte en este
             proceso. Gracias por permitirnos ser parte de este camino. Desde este momento
@@ -18,7 +21,7 @@ export default function Hero() {
           <div className={styles.actions}>
             <WhatsAppButton>Solicitar evaluación</WhatsAppButton>
             <a className={styles.resultsLink} href="#resultados">
-              Conocé los resultados <span aria-hidden="true">↓</span>
+              Conocé los resultados <ArrowIcon direction="down" />
             </a>
           </div>
 
@@ -35,10 +38,15 @@ export default function Hero() {
         </div>
 
         <div className={styles.visual}>
-          <div className={styles.mediaPlaceholder} aria-label="Espacio reservado para contenido visual">
-            <span className={styles.placeholderMark} aria-hidden="true" />
-            <p>Espacio visual</p>
-            <small>Imagen o video a definir</small>
+          <div className={styles.heroPortrait}>
+            <Image
+              className={styles.francoImage}
+              src={assetPath("/images/content/franco-hero-option-3.webp")}
+              alt="Franco mostrando el resultado de su tratamiento capilar"
+              width={1400}
+              height={2489}
+              priority
+            />
           </div>
         </div>
       </div>

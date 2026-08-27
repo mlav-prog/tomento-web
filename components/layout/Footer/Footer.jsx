@@ -1,4 +1,5 @@
 import Image from "next/image";
+import ArrowIcon from "@/components/ui/ArrowIcon/ArrowIcon";
 import { site } from "@/content/site";
 import { assetPath } from "@/lib/assets";
 import { createWhatsAppUrl } from "@/lib/whatsapp";
@@ -89,7 +90,7 @@ export default function Footer() {
         <div className={styles.bottom}>
           <span>© {new Date().getFullYear()} Tomento Capilar</span>
           <p>La información del sitio es orientativa y no reemplaza una evaluación profesional.</p>
-          <a href="#inicio">Volver arriba ↑</a>
+          <a href="#inicio">Volver arriba <ArrowIcon direction="up" /></a>
         </div>
       </div>
     </footer>
