@@ -109,6 +109,15 @@
   background: var(--color-green-deep);
 }
 
+.wideComparison figure {
+  min-height: 0;
+  aspect-ratio: 1.1 / 1;
+}
+
+.wideComparison img {
+  object-position: center;
+}
+
 .comparison img {
   object-fit: cover;
   object-position: center 35%;
@@ -176,6 +185,7 @@
   .caseInfo { padding: 8px 4px 2px; }
   .comparison { gap: 7px; }
   .comparison figure { min-height: 68vw; border-radius: 14px; }
+  .wideComparison figure { min-height: 0; aspect-ratio: 1.1 / 1; }
   .comparison figcaption { right: 7px; bottom: 7px; left: 7px; padding: 7px; font-size: 0.58rem; }
   .actions button { width: 38px; height: 38px; }
 }

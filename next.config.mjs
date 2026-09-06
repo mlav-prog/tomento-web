@@ -4,6 +4,7 @@ const nextConfig = {
   output: "export",
   trailingSlash: true,
   basePath,
+  allowedDevOrigins: ["172.20.10.5", "192.168.0.104"],
   images: {
     unoptimized: true,
   },

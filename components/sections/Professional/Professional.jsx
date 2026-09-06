@@ -16,17 +16,17 @@ const professionals = [
     name: "Dr. Hernán López",
     role: "Médico · Especialista en implante capilar con técnica FUE",
     bio: "Enfoque médico orientado a la planificación personalizada y a la obtención de resultados naturales.",
-    license: "Matrícula: MN 199837",
+    license: "Matrícula MN 199.837",
     image: "/images/professionals/hernan-lopez.webp",
     imageAlt: "Doctor Hernán López, médico especialista en implante capilar",
   },
 ];
 
-export default function Professional() {
+export default function Professional({ locale, copy }) {
   return (
     <section className={styles.section} id="profesional">
       <div className={styles.wrapper}>
-        <SectionHeading light eyebrow="Profesionales" title="Un equipo que acompaña cada etapa" />
+        <SectionHeading light eyebrow={copy.professionals[0]} title={copy.professionals[1]} />
 
         <div className={styles.list}>
           {professionals.map((professional, index) => (
@@ -43,9 +43,9 @@ export default function Professional() {
               <div className={styles.content}>
                 <span className={styles.number}>0{index + 1}</span>
                 <h3>{professional.name}</h3>
-                <p className={styles.role}>{professional.role}</p>
-                <p className={styles.bio}>{professional.bio}</p>
-                <p className={styles.license}>{professional.license}</p>
+                <p className={styles.role}>{locale === "en" ? ["Surgical Instrumentation Specialist · Diploma in Hair Transplantation · Trichotherapist", "Physician · Specialist in FUE hair transplantation"][index] : locale === "pt" ? ["Instrumentadora cirúrgica · Especialista em Microimplante Capilar · Tricoterapeuta", "Médico · Especialista em implante capilar pela técnica FUE"][index] : professional.role}</p>
+                <p className={styles.bio}>{locale === "en" ? ["Personalized support during the assessment, treatment, and follow-up of each patient.", "A medical approach focused on personalized planning and natural-looking results."][index] : locale === "pt" ? ["Acompanhamento personalizado durante a avaliação, o tratamento e o seguimento de cada paciente.", "Abordagem médica voltada ao planejamento personalizado e à obtenção de resultados naturais."][index] : professional.bio}</p>
+                <p className={styles.license}>{locale === "en" ? professional.license.replace("Matrícula profesional", "Professional license").replace("Matrícula", "License") : locale === "pt" ? professional.license.replace("Matrícula profesional", "Registro profissional").replace("Matrícula", "Registro") : professional.license}</p>
               </div>
             </article>
           ))}

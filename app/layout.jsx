@@ -15,7 +15,14 @@ export const metadata = {
     "mesoterapia capilar",
     "microdermopigmentación capilar",
   ],
-  alternates: { canonical: site.url },
+  alternates: {
+    canonical: site.url,
+    languages: {
+      es: site.url,
+      en: `${site.url.replace(/\/$/, "")}/en/`,
+      "pt-BR": `${site.url.replace(/\/$/, "")}/pt/`,
+    },
+  },
   openGraph: {
     type: "website",
     locale: "es_AR",

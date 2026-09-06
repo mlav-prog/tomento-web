@@ -8,7 +8,7 @@ import { assetPath } from "@/lib/assets";
 import { selectTreatmentForContact } from "@/lib/treatmentSelection";
 import styles from "./Treatments.module.css";
 
-const treatments = [
+const treatmentMedia = [
   {
     number: "01",
     title: "Microimplante Capilar",
@@ -56,8 +56,11 @@ const treatments = [
   },
 ];
 
-export default function Treatments() {
+export default function Treatments({ copy }) {
   const [activeTreatment, setActiveTreatment] = useState(null);
+  const treatments = copy.treatmentItems.map(([title, formValue, tag, text, description, details], index) => ({
+    ...treatmentMedia[index], title, formValue, tag, text, description, details,
+  }));
 
   function handleEvaluationRequest(event) {
     event.preventDefault();
@@ -82,14 +85,14 @@ export default function Treatments() {
   return (
     <section className={styles.section} id="tratamientos">
       <div className={styles.inner}>
-        <SectionHeading eyebrow="Tratamientos" title="Soluciones para cada necesidad capilar" description="La evaluación inicial permite definir un plan acorde a cada caso y acompañar su evolución." />
+        <SectionHeading eyebrow={copy.treatments[0]} title={copy.treatments[1]} description={copy.treatments[2]} />
         <div className={styles.grid}>
           {treatments.map((item) => (
             <article className={`${styles.card} ${item.featured ? styles.featured : ""}`} key={item.number}>
               <div className={styles.top}><span>{item.number}</span><span>{item.tag}</span></div>
               <div><h3>{item.title}</h3><p>{item.text}</p></div>
               <button type="button" className={styles.moreButton} onClick={() => setActiveTreatment(item)}>
-                Conocer más <ArrowIcon />
+                {copy.treatments[3]} <ArrowIcon />
               </button>
             </article>
           ))}
@@ -105,7 +108,7 @@ export default function Treatments() {
             aria-labelledby="treatment-modal-title"
             onMouseDown={(event) => event.stopPropagation()}
           >
-            <button className={styles.closeButton} type="button" onClick={() => setActiveTreatment(null)} aria-label="Cerrar información del tratamiento">×</button>
+            <button className={styles.closeButton} type="button" onClick={() => setActiveTreatment(null)} aria-label={copy.treatments[5]}>×</button>
             <div className={styles.modalImage}>
               <Image src={assetPath(activeTreatment.image)} alt={activeTreatment.imageAlt} fill sizes="(max-width: 760px) 100vw, 44vw" />
             </div>
@@ -116,7 +119,7 @@ export default function Treatments() {
               <ul>
                 {activeTreatment.details.map((detail) => <li key={detail}>{detail}</li>)}
               </ul>
-              <a href="#contacto" onClick={handleEvaluationRequest}>Solicitar una evaluación <ArrowIcon /></a>
+              <a href="#contacto" onClick={handleEvaluationRequest}>{copy.treatments[4]} <ArrowIcon /></a>
             </div>
           </article>
         </div>

@@ -4,14 +4,10 @@ import MobileNavigation from "./MobileNavigation";
 import { assetPath } from "@/lib/assets";
 import styles from "./Header.module.css";
 
-const navigation = [
-  { label: "Tratamientos", href: "#tratamientos" },
-  { label: "Resultados", href: "#resultados" },
-  { label: "Profesional", href: "#profesional" },
-  { label: "Preguntas", href: "#preguntas" },
-];
+const anchors = ["#tratamientos", "#resultados", "#profesional", "#preguntas"];
 
-export default function Header() {
+export default function Header({ locale, copy }) {
+  const navigation = copy.nav.map((label, index) => ({ label, href: anchors[index] }));
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
@@ -25,7 +21,7 @@ export default function Header() {
           />
         </a>
 
-        <nav className={styles.navigation} aria-label="Navegación principal">
+        <nav className={styles.navigation} aria-label={locale === "en" ? "Main navigation" : locale === "pt" ? "Navegação principal" : "Navegación principal"}>
           {navigation.map((item) => (
             <a key={item.href} href={item.href}>
               {item.label}
@@ -34,10 +30,15 @@ export default function Header() {
         </nav>
 
         <div className={styles.action}>
-          <WhatsAppButton variant="outline">Consultar</WhatsAppButton>
+          <div className={styles.languages} aria-label="Language">
+            <a href={assetPath("/")} aria-current={locale === "es" ? "page" : undefined}>ES</a>
+            <a href={assetPath("/en/")} aria-current={locale === "en" ? "page" : undefined}>EN</a>
+            <a href={assetPath("/pt/")} aria-current={locale === "pt" ? "page" : undefined}>PT</a>
+          </div>
+          <WhatsAppButton variant="outline" locale={locale}>{copy.consult}</WhatsAppButton>
         </div>
 
-        <MobileNavigation items={navigation} />
+        <MobileNavigation items={navigation} locale={locale} copy={copy} />
       </div>
     </header>
   );

@@ -1,18 +1,12 @@
 import SectionHeading from "@/components/ui/SectionHeading/SectionHeading";
 import styles from "./Process.module.css";
 
-const steps = [
-  ["01", "Evaluación", "Conocemos tu caso, objetivos y antecedentes."],
-  ["02", "Plan personalizado", "Definimos la alternativa más adecuada para vos."],
-  ["03", "Tratamiento", "Realizamos el procedimiento con precisión y cuidado."],
-  ["04", "Seguimiento", "Realizamos un seguimiento personalizado de tu evolución durante todo el proceso, con controles en cada etapa, hasta que juntos logremos el resultado esperado."],
-];
-
-export default function Process() {
+export default function Process({ copy }) {
+  const steps = copy.processSteps.map(([title, text], index) => [String(index + 1).padStart(2, "0"), title, text]);
   return (
     <section className={styles.section}>
       <div className={styles.inner}>
-        <SectionHeading light eyebrow="Cómo trabajamos" title="Un proceso claro y acompañado" description="Cada etapa está pensada para brindar información, tranquilidad y seguimiento." />
+        <SectionHeading light eyebrow={copy.process[0]} title={copy.process[1]} description={copy.process[2]} />
         <div className={styles.steps}>{steps.map(([number,title,text]) => <article key={number}><span>{number}</span><h3>{title}</h3><p>{text}</p></article>)}</div>
       </div>
     </section>

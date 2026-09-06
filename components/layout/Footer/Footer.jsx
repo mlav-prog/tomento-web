@@ -5,14 +5,7 @@ import { assetPath } from "@/lib/assets";
 import { createWhatsAppUrl } from "@/lib/whatsapp";
 import styles from "./Footer.module.css";
 
-const navigation = [
-  { label: "Inicio", href: "#inicio" },
-  { label: "Tratamientos", href: "#tratamientos" },
-  { label: "Resultados", href: "#resultados" },
-  { label: "Profesionales", href: "#profesional" },
-  { label: "Preguntas frecuentes", href: "#preguntas" },
-  { label: "Contacto", href: "#contacto" },
-];
+const anchors = ["#inicio", "#tratamientos", "#resultados", "#profesional", "#preguntas", "#contacto"];
 
 function FooterIcon({ type }) {
   const paths = {
@@ -23,7 +16,10 @@ function FooterIcon({ type }) {
   return <svg className={styles.icon} viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">{paths[type]}</svg>;
 }
 
-export default function Footer() {
+export default function Footer({ locale, copy }) {
+  const navigationLabels = locale === "en" ? ["Home", "Treatments", "Results", "Professionals", "Frequently asked questions", "Contact"] : locale === "pt" ? ["Início", "Tratamentos", "Resultados", "Profissionais", "Perguntas frequentes", "Contato"] : ["Inicio", "Tratamientos", "Resultados", "Profesionales", "Preguntas frecuentes", "Contacto"];
+  const navigation = navigationLabels.map((label, index) => ({ label, href: anchors[index] }));
+  const whatsappMessage = locale === "en" ? "Hello, I would like to request an assessment at Tomento Capilar." : locale === "pt" ? "Olá, gostaria de solicitar uma avaliação na Tomento Capilar." : site.whatsappMessage;
   return (
     <footer className={styles.footer}>
       <div className={styles.inner}>
@@ -37,36 +33,36 @@ export default function Footer() {
                 height={595}
               />
             </a>
-            <p>Microimplante y tratamientos capilares personalizados en CABA.</p>
+            <p>{copy.footer[0]}</p>
           </div>
 
           <nav className={styles.column} aria-label="Navegación del pie de página">
-            <p className={styles.label}>Explorar</p>
+            <p className={styles.label}>{copy.footer[1]}</p>
             {navigation.map((item) => (
               <a href={item.href} key={item.href}>{item.label}</a>
             ))}
           </nav>
 
           <div className={styles.column}>
-            <p className={styles.label}>Profesionales</p>
+            <p className={styles.label}>{copy.footer[2]}</p>
             <div className={styles.professional}>
               <span className={styles.professionalIcon} aria-hidden="true">+</span>
               <div>
                 <strong>Lic. Judith De Vito</strong>
-                <small>Instrumentadora quirúrgica · Tricoterapeuta</small>
+                <small>{locale === "en" ? "Surgical instrumentation specialist · Trichotherapist" : locale === "pt" ? "Instrumentadora cirúrgica · Tricoterapeuta" : "Instrumentadora quirúrgica · Tricoterapeuta"}</small>
               </div>
             </div>
             <div className={styles.professional}>
               <span className={styles.professionalIcon} aria-hidden="true">+</span>
               <div>
                 <strong>Dr. Hernán López</strong>
-                <small>Médico especialista en implante capilar</small>
+                <small>{locale === "en" ? "Physician specializing in hair transplantation" : locale === "pt" ? "Médico especialista em implante capilar" : "Médico especialista en implante capilar"}</small>
               </div>
             </div>
           </div>
 
           <address className={styles.column}>
-            <p className={styles.label}>Contacto</p>
+            <p className={styles.label}>{copy.footer[3]}</p>
             <a
               className={styles.iconLink}
               href="https://www.google.com/maps/search/?api=1&query=Jun%C3%ADn+246+CABA"
@@ -76,7 +72,7 @@ export default function Footer() {
               <FooterIcon type="location" />
               {site.address}
             </a>
-            <a className={styles.iconLink} href={createWhatsAppUrl(site.whatsapp, site.whatsappMessage)} target="_blank" rel="noreferrer">
+            <a className={styles.iconLink} href={createWhatsAppUrl(site.whatsapp, whatsappMessage)} target="_blank" rel="noreferrer">
               <FooterIcon type="whatsapp" />
               +54 9 11 2815-6799
             </a>
@@ -89,8 +85,8 @@ export default function Footer() {
 
         <div className={styles.bottom}>
           <span>© {new Date().getFullYear()} Tomento Capilar</span>
-          <p>La información del sitio es orientativa y no reemplaza una evaluación profesional.</p>
-          <a href="#inicio">Volver arriba <ArrowIcon direction="up" /></a>
+          <p>{copy.footer[4]}</p>
+          <a href="#inicio">{copy.footer[5]} <ArrowIcon direction="up" /></a>
         </div>
       </div>
     </footer>

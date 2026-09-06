@@ -9,6 +9,26 @@ import styles from "./Results.module.css";
 
 const cases = [
   {
+    view: "Evolución capilar femenina",
+    format: "wide",
+    description: "Comparación del mismo caso durante su proceso de tratamiento y seguimiento profesional.",
+    before: "/images/results/caso-femenino-antes.jpeg",
+    after: "/images/results/caso-femenino-despues.jpeg",
+  },
+  {
+    view: "Seguimiento capilar femenino",
+    description: "Comparación cenital del mismo caso durante su seguimiento profesional.",
+    before: "/images/results/caso-femenino-cenital-antes.jpeg",
+    after: "/images/results/caso-femenino-cenital-despues.jpeg",
+  },
+  {
+    view: "Evolución capilar masculina",
+    format: "wide",
+    description: "Registro comparativo del mismo paciente durante su evolución capilar.",
+    before: "/images/results/caso-masculino-antes.jpeg",
+    after: "/images/results/caso-masculino-despues.jpeg",
+  },
+  {
     view: "Vista frontal",
     before: "/images/results/caso-santi-frontal-antes.jpeg",
     after: "/images/results/caso-santi-frontal-evolucion.jpeg",
@@ -25,7 +45,7 @@ const cases = [
   },
 ];
 
-export default function Results() {
+export default function Results({ locale, copy }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const activeCase = cases[activeIndex];
 
@@ -41,21 +61,21 @@ export default function Results() {
     <section className={styles.section} id="resultados">
       <div className={styles.inner}>
         <SectionHeading
-          eyebrow="Casos reales"
-          title="Evoluciones que cuentan una historia"
-          description="Cada proceso es único. Te mostramos registros reales del seguimiento realizado por el equipo de Tomento."
+          eyebrow={copy.results[0]}
+          title={copy.results[1]}
+          description={copy.results[2]}
         />
 
         <div className={styles.carousel}>
           <div className={styles.carouselTop}>
             <span>
-              Comparación {activeIndex + 1} de {cases.length}
+              {copy.results[3]} {activeIndex + 1} {locale === "en" ? "of" : locale === "pt" ? "de" : "de"} {cases.length}
             </span>
             <div className={styles.actions}>
-              <button type="button" onClick={showPrevious} aria-label="Ver comparación anterior">
+              <button type="button" onClick={showPrevious} aria-label={locale === "en" ? "View previous comparison" : locale === "pt" ? "Ver comparação anterior" : "Ver comparación anterior"}>
                 <ArrowIcon direction="left" />
               </button>
-              <button type="button" onClick={showNext} aria-label="Ver comparación siguiente">
+              <button type="button" onClick={showNext} aria-label={locale === "en" ? "View next comparison" : locale === "pt" ? "Ver próxima comparação" : "Ver comparación siguiente"}>
                 <ArrowIcon direction="right" />
               </button>
             </div>
@@ -63,45 +83,42 @@ export default function Results() {
 
           <article className={styles.case} key={activeCase.view}>
             <div className={styles.caseInfo}>
-              <span>Seguimiento capilar</span>
-              <h3>{activeCase.view}</h3>
-              <p>
-                Comparación fotográfica del mismo paciente durante su proceso de
-                evolución y seguimiento profesional.
-              </p>
-              <a href="#contacto">Consultar mi caso <ArrowIcon /></a>
+              <span>{copy.results[4]}</span>
+              <h3>{locale === "en" ? ["Female hair progress", "Female hair follow-up", "Male hair progress", "Front view", "Top view", "Crown view"][activeIndex] : locale === "pt" ? ["Evolução capilar feminina", "Acompanhamento capilar feminino", "Evolução capilar masculina", "Vista frontal", "Vista superior", "Vista da coroa"][activeIndex] : activeCase.view}</h3>
+              <p>{locale === "en" ? "Photographic comparison of the same patient during their progress and professional follow-up." : locale === "pt" ? "Comparação fotográfica do mesmo paciente durante sua evolução e acompanhamento profissional." : activeCase.description ?? "Comparación fotográfica del mismo paciente durante su proceso de evolución y seguimiento profesional."}</p>
+              <a href="#contacto">{copy.results[5]} <ArrowIcon /></a>
             </div>
 
-            <div className={styles.comparison}>
+            <div className={`${styles.comparison} ${activeCase.format === "wide" ? styles.wideComparison : ""}`}>
               <figure>
                 <Image
                   src={assetPath(activeCase.before)}
-                  alt={`${activeCase.view} antes del tratamiento capilar`}
+                  alt={`${activeCase.view} ${copy.results[6].toLowerCase()}`}
                   fill
                   sizes="(max-width: 780px) 50vw, 28vw"
                 />
-                <figcaption>Antes</figcaption>
+                <figcaption>{copy.results[6]}</figcaption>
               </figure>
               <figure>
                 <Image
                   src={assetPath(activeCase.after)}
-                  alt={`${activeCase.view} durante la evolución capilar`}
+                  alt={`${activeCase.view} ${copy.results[7].toLowerCase()}`}
                   fill
                   sizes="(max-width: 780px) 50vw, 28vw"
                 />
-                <figcaption>Después</figcaption>
+                <figcaption>{copy.results[7]}</figcaption>
               </figure>
             </div>
           </article>
 
-          <div className={styles.dots} aria-label="Comparaciones disponibles">
+          <div className={styles.dots} aria-label={copy.results[8]}>
             {cases.map((item, index) => (
               <button
                 type="button"
                 key={item.view}
                 className={index === activeIndex ? styles.activeDot : undefined}
                 onClick={() => setActiveIndex(index)}
-                aria-label={`Ver ${item.view}`}
+                aria-label={`${locale === "en" ? "View" : locale === "pt" ? "Ver" : "Ver"} ${item.view}`}
                 aria-current={index === activeIndex ? "true" : undefined}
               />
             ))}
@@ -109,8 +126,7 @@ export default function Results() {
         </div>
 
         <p className={styles.disclaimer}>
-          Las imágenes corresponden a seguimientos reales. Los tiempos de evolución y
-          los resultados pueden variar según cada paciente.
+          {copy.results[9]}
         </p>
       </div>
     </section>

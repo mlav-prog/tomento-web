@@ -4,24 +4,19 @@ import ArrowIcon from "@/components/ui/ArrowIcon/ArrowIcon";
 import { assetPath } from "@/lib/assets";
 import styles from "./Hero.module.css";
 
-export default function Hero() {
+export default function Hero({ locale, copy }) {
   return (
     <section className={styles.hero} id="inicio">
       <div className={styles.inner}>
         <div className={styles.content}>
-          <p className={styles.eyebrow}>Microimplante capilar · Técnica FUE</p>
-          <h1>Sembramos el comienzo de una nueva etapa</h1>
-          <p className={styles.intro}>
-            Cada gran cambio comienza con un primer paso, y nos alegra acompañarte en este
-            proceso. Gracias por permitirnos ser parte de este camino. Desde este momento
-            estaremos a tu lado en cada etapa, con un tratamiento personalizado, atención
-            profesional y el compromiso de brindarte el cuidado que este momento merece.
-          </p>
+          <p className={styles.eyebrow}>{copy.hero[0]}</p>
+          <h1>{copy.hero[1]}</h1>
+          <p className={styles.intro}>{copy.hero[2]}</p>
 
           <div className={styles.actions}>
-            <WhatsAppButton>Solicitar evaluación</WhatsAppButton>
+            <WhatsAppButton locale={locale}>{copy.hero[3]}</WhatsAppButton>
             <a className={styles.resultsLink} href="#resultados">
-              Conocé los resultados <ArrowIcon direction="down" />
+              {copy.hero[4]} <ArrowIcon direction="down" />
             </a>
           </div>
 
@@ -32,7 +27,7 @@ export default function Hero() {
             </div>
             <div className={styles.credential}>
               <span>Dr. Hernán Ramón Eduardo López</span>
-              <span>Médico especialista en implante capilar · Matrícula: MN 199837</span>
+              <span>Médico especialista en implante capilar · Matrícula MN 199.837</span>
             </div>
           </div>
         </div>
@@ -42,7 +37,7 @@ export default function Hero() {
             <Image
               className={styles.francoImage}
               src={assetPath("/images/content/franco-hero-option-3.webp")}
-              alt="Franco mostrando el resultado de su tratamiento capilar"
+              alt={locale === "en" ? "Franco showing the result of his hair treatment" : locale === "pt" ? "Franco mostrando o resultado de seu tratamento capilar" : "Franco mostrando el resultado de su tratamiento capilar"}
               width={1400}
               height={2489}
               priority
