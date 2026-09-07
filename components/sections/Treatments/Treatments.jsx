@@ -109,7 +109,7 @@ export default function Treatments({ copy }) {
             onMouseDown={(event) => event.stopPropagation()}
           >
             <button className={styles.closeButton} type="button" onClick={() => setActiveTreatment(null)} aria-label={copy.treatments[5]}>×</button>
-            <div className={styles.modalImage}>
+            <div className={`${styles.modalImage} ${activeTreatment.number === "03" ? styles.judithTabletImage : ""}`}>
               <Image src={assetPath(activeTreatment.image)} alt={activeTreatment.imageAlt} fill sizes="(max-width: 900px) 100vw, 44vw" />
             </div>
             <div className={styles.modalContent}>
