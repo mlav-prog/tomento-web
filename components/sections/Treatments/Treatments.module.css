@@ -9,9 +9,9 @@
 .card p { margin: 0; line-height: 1.6; opacity: .72; }
 .moreButton { width: fit-content; padding: 0 0 5px; border: 0; border-bottom: 1px solid currentColor; display: inline-flex; align-items: center; gap: 7px; color: inherit; background: transparent; font: inherit; font-size: .78rem; letter-spacing: .06em; cursor: pointer; }
 .modalBackdrop { position: fixed; z-index: 1000; inset: 0; padding: 24px; display: grid; place-items: center; background: rgba(7,17,10,.78); backdrop-filter: blur(8px); animation: backdropIn .2s ease; }
-.modal { position: relative; width: min(960px,100%); max-height: min(780px,calc(100vh - 48px)); overflow-x: hidden; overflow-y: auto; border: 1px solid rgba(255,255,255,.18); border-radius: 24px; display: grid; grid-template-columns: minmax(0,.9fr) minmax(0,1fr); color: var(--color-green-deep); background: #f4f1ea; box-shadow: 0 30px 100px rgba(0,0,0,.38); animation: modalIn .25s ease; }
+.modal { position: relative; width: min(900px,100%); max-height: min(740px,calc(100vh - 48px)); overflow-x: hidden; overflow-y: auto; border: 1px solid rgba(255,255,255,.18); border-radius: 24px; display: grid; grid-template-columns: minmax(0,.72fr) minmax(0,1.18fr); color: var(--color-green-deep); background: #f4f1ea; box-shadow: 0 30px 100px rgba(0,0,0,.38); animation: modalIn .25s ease; }
 .closeButton { position: absolute; z-index: 3; top: 16px; right: 16px; width: 42px; height: 42px; border: 1px solid rgba(45,61,45,.18); border-radius: 50%; display: grid; place-items: center; color: var(--color-green-deep); background: rgba(255,255,255,.9); font-size: 1.65rem; line-height: 1; cursor: pointer; }
-.modalImage { position: relative; min-height: 560px; background: var(--color-green-deep); }
+.modalImage { position: relative; min-height: 520px; background: var(--color-green-deep); }
 .modalImage img { object-fit: cover; }
 .modalContent { min-width: 0; padding: clamp(34px,5vw,64px); align-self: center; }
 .modalTag { color: var(--color-taupe); font-size: .67rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
@@ -25,7 +25,6 @@
 @keyframes backdropIn { from { opacity: 0; } }
 @keyframes modalIn { from { opacity: 0; transform: translateY(12px) scale(.985); } }
 @media (max-width: 1050px) { .card h3 { font-size: 1.55rem; } }
-@media (max-width: 900px) { .modalBackdrop { padding: 16px; } .modal { max-height: calc(100vh - 32px); grid-template-columns: minmax(0,1fr); border-radius: 20px; } .modalImage { min-height: 0; height: clamp(210px,30vw,250px); } .modalImage img { object-position: center 40%; } .modalContent { padding: 28px 34px 32px; } .modalContent h3, .modalContent .longModalTitle { font-size: clamp(1.85rem,6vw,2.65rem); } }
-@media (min-width: 761px) and (max-width: 900px) { .judithTabletImage { background: #e9e9e5; } .judithTabletImage img { object-fit: contain; object-position: center; } }
-@media (max-width: 760px) { .grid { grid-template-columns: minmax(0,1fr); } .card h3 { font-size: clamp(1.65rem,7vw,2.2rem); } .modalBackdrop { padding: 12px; } .modal { max-height: calc(100vh - 24px); border-radius: 18px; } .modalImage { height: clamp(200px,48vw,235px); } .modalContent { padding: 26px 24px 30px; } .modalContent h3, .modalContent .longModalTitle { font-size: clamp(1.55rem,6.5vw,2.1rem); } }
+@media (max-width: 900px) { .modalBackdrop { padding: 16px; } .modal { max-height: calc(100vh - 32px); grid-template-columns: minmax(0,1fr); border-radius: 20px; } .modalImage { min-height: 0; height: clamp(180px,25vw,210px); } .modalImage img { object-position: center 42%; } .modalContent { padding: 28px 34px 32px; } .modalContent h3, .modalContent .longModalTitle { font-size: clamp(1.85rem,6vw,2.65rem); } }
+@media (max-width: 760px) { .grid { grid-template-columns: minmax(0,1fr); } .card h3 { font-size: clamp(1.65rem,7vw,2.2rem); } .modalBackdrop { padding: 12px; } .modal { max-height: calc(100vh - 24px); border-radius: 18px; } .modalImage { height: clamp(185px,44vw,215px); } .modalContent { padding: 26px 24px 30px; } .modalContent h3, .modalContent .longModalTitle { font-size: clamp(1.55rem,6.5vw,2.1rem); } }
 @media (max-width: 580px) { .inner { width: calc(100% - 32px); } .featured { grid-column: auto; } .card { min-height: 330px; } }
