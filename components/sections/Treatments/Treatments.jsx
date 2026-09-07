@@ -110,11 +110,16 @@ export default function Treatments({ copy }) {
           >
             <button className={styles.closeButton} type="button" onClick={() => setActiveTreatment(null)} aria-label={copy.treatments[5]}>×</button>
             <div className={styles.modalImage}>
-              <Image src={assetPath(activeTreatment.image)} alt={activeTreatment.imageAlt} fill sizes="(max-width: 760px) 100vw, 44vw" />
+              <Image src={assetPath(activeTreatment.image)} alt={activeTreatment.imageAlt} fill sizes="(max-width: 900px) 100vw, 44vw" />
             </div>
             <div className={styles.modalContent}>
               <span className={styles.modalTag}>{activeTreatment.tag}</span>
-              <h3 id="treatment-modal-title">{activeTreatment.title}</h3>
+              <h3
+                id="treatment-modal-title"
+                className={activeTreatment.title.length > 24 ? styles.longModalTitle : undefined}
+              >
+                {activeTreatment.title}
+              </h3>
               <p>{activeTreatment.description}</p>
               <ul>
                 {activeTreatment.details.map((detail) => <li key={detail}>{detail}</li>)}
