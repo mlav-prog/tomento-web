@@ -1,22 +1,6 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: "Asgard Tomento";
-  src: url("../public/fonts/AsgardTrial-Regular.ttf") format("truetype");
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Asgard Tomento";
-  src: url("../public/fonts/AsgardTrial-Medium.ttf") format("truetype");
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-}
-
-@font-face {
   font-family: "Circular Tomento";
   src: url("../public/fonts/CircularStd-Book.otf") format("opentype");
   font-style: normal;
@@ -51,7 +35,7 @@
   --color-green: #2d3d2d;
   --color-green-deep: #202e21;
   --color-text-soft: #e4e7df;
-  --font-display: "Asgard Tomento", Georgia, "Times New Roman", serif;
+  --font-display: "Circular Tomento", Arial, Helvetica, sans-serif;
   --font-body: "Circular Tomento", Arial, Helvetica, sans-serif;
   --content-width: 1240px;
 }

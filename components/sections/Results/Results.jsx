@@ -16,10 +16,10 @@ const cases = [
     after: "/images/results/caso-femenino-despues.jpeg",
   },
   {
-    view: "Seguimiento capilar femenino",
-    description: "Comparación cenital del mismo caso durante su seguimiento profesional.",
-    before: "/images/results/caso-femenino-cenital-antes.jpeg",
-    after: "/images/results/caso-femenino-cenital-despues.jpeg",
+    view: "Evolución de Darío — 9 meses",
+    description: "Comparación frontal antes del microimplante y a los nueve meses del procedimiento.",
+    before: "/images/results/caso-dario-antes.webp",
+    after: "/images/results/caso-dario-9-meses.webp",
   },
   {
     view: "Evolución capilar masculina",
@@ -84,7 +84,7 @@ export default function Results({ locale, copy }) {
           <article className={styles.case} key={activeCase.view}>
             <div className={styles.caseInfo}>
               <span>{copy.results[4]}</span>
-              <h3>{locale === "en" ? ["Female hair progress", "Female hair follow-up", "Male hair progress", "Front view", "Top view", "Crown view"][activeIndex] : locale === "pt" ? ["Evolução capilar feminina", "Acompanhamento capilar feminino", "Evolução capilar masculina", "Vista frontal", "Vista superior", "Vista da coroa"][activeIndex] : activeCase.view}</h3>
+              <h3>{locale === "en" ? ["Female hair progress", "Darío’s progress — 9 months", "Male hair progress", "Front view", "Top view", "Crown view"][activeIndex] : locale === "pt" ? ["Evolução capilar feminina", "Evolução de Darío — 9 meses", "Evolução capilar masculina", "Vista frontal", "Vista superior", "Vista da coroa"][activeIndex] : activeCase.view}</h3>
               <p>{locale === "en" ? "Photographic comparison of the same patient during their progress and professional follow-up." : locale === "pt" ? "Comparação fotográfica do mesmo paciente durante sua evolução e acompanhamento profissional." : activeCase.description ?? "Comparación fotográfica del mismo paciente durante su proceso de evolución y seguimiento profesional."}</p>
               <a href="#contacto">{copy.results[5]} <ArrowIcon /></a>
             </div>

@@ -9,7 +9,7 @@ const professionals = [
     role: "Lic. en Instrumentación Quirúrgica · Diplomada en Microimplante Capilar · Tricoterapeuta",
     bio: "Acompañamiento personalizado durante la evaluación, el tratamiento y el seguimiento de cada paciente.",
     license: "Matrícula profesional 16.509",
-    image: "/images/professionals/judith-de-vito.webp",
+    image: "/images/professionals/judith-de-vito-new.webp",
     imageAlt: "Licenciada Judith De Vito, profesional de Tomento Capilar",
   },
   {

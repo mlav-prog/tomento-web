@@ -6,7 +6,9 @@ export default function Process({ copy }) {
   return (
     <section className={styles.section}>
       <div className={styles.inner}>
-        <SectionHeading light eyebrow={copy.process[0]} title={copy.process[1]} description={copy.process[2]} />
+        <div className={styles.headingWrap}>
+          <SectionHeading light eyebrow={copy.process[0]} title={copy.process[1]} description={copy.process[2]} />
+        </div>
         <div className={styles.steps}>{steps.map(([number,title,text]) => <article key={number}><span>{number}</span><h3>{title}</h3><p>{text}</p></article>)}</div>
       </div>
     </section>

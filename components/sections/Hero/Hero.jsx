@@ -11,7 +11,11 @@ export default function Hero({ locale, copy }) {
         <div className={styles.content}>
           <p className={styles.eyebrow}>{copy.hero[0]}</p>
           <h1>{copy.hero[1]}</h1>
-          <p className={styles.intro}>{copy.hero[2]}</p>
+          <div className={styles.intro}>
+            {copy.hero[2].split("\n\n").map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
 
           <div className={styles.actions}>
             <WhatsAppButton locale={locale}>{copy.hero[3]}</WhatsAppButton>
@@ -35,15 +39,16 @@ export default function Hero({ locale, copy }) {
         <div className={styles.visual}>
           <div className={styles.heroPortrait}>
             <Image
-              className={styles.francoImage}
-              src={assetPath("/images/content/franco-hero-option-3.webp")}
-              alt={locale === "en" ? "Franco showing the result of his hair treatment" : locale === "pt" ? "Franco mostrando o resultado de seu tratamento capilar" : "Franco mostrando el resultado de su tratamiento capilar"}
-              width={1400}
-              height={2489}
+              className={styles.teamImage}
+              src={assetPath("/images/professionals/judith-hernan-equipo.webp")}
+              alt={locale === "en" ? "Judith De Vito and Dr. Hernán López, Tomento Capilar team" : locale === "pt" ? "Judith De Vito e Dr. Hernán López, equipe Tomento Capilar" : "Judith De Vito y el Dr. Hernán López, equipo de Tomento Capilar"}
+              fill
+              sizes="(max-width: 700px) 100vw, 42vw"
               priority
             />
           </div>
         </div>
+
       </div>
     </section>
   );

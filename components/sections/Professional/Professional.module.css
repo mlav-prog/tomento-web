@@ -7,6 +7,8 @@
 .profile:nth-child(even) .content { order: 1; }
 .portrait { position: relative; aspect-ratio: .86; overflow: hidden; border: 1px solid rgba(255,255,255,.22); border-radius: 50% 50% 18px 18px; background: linear-gradient(145deg,rgba(206,192,178,.16),rgba(112,129,97,.18)); }
 .portrait img { object-fit: cover; object-position: center 24%; filter: saturate(.8) contrast(.96); }
+.profile:first-child .portrait { aspect-ratio: .74; }
+.profile:first-child .portrait img { object-position: center top; }
 .number { color: var(--color-beige); font-size: .68rem; letter-spacing: .14em; }
 .content h3 { max-width: 720px; margin: 18px 0 24px; font-family: var(--font-display); font-size: clamp(2.6rem,5vw,5.2rem); font-weight: 400; letter-spacing: -.04em; line-height: .98; text-wrap: balance; }
 .role { max-width: 680px; color: var(--color-beige); line-height: 1.6; }
