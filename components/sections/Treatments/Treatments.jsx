@@ -16,8 +16,8 @@ const treatmentMedia = [
     tag: "Técnica FUE",
     featured: true,
     text: "Redistribución de unidades foliculares mediante una técnica mínimamente invasiva y personalizada.",
-    image: "/images/clinic/microimplante-equipo.webp",
-    imageAlt: "Judith De Vito y Hernán López durante un microimplante capilar",
+    image: "/images/clinic/microimplante-tomento.webp",
+    imageAlt: "Judith De Vito durante la preparación de un microimplante capilar en Tomento",
     description: "La técnica FUE permite extraer unidades foliculares de una zona donante e implantarlas de forma individual en las áreas que requieren mayor cobertura.",
     details: ["Diseño adaptado a cada paciente", "Procedimiento planificado por el equipo profesional", "Controles y seguimiento durante la evolución"],
   },
@@ -38,8 +38,8 @@ const treatmentMedia = [
     formValue: "Mesoterapia capilar",
     tag: "Tratamiento personalizado",
     text: "Aplicación localizada según las necesidades identificadas durante la evaluación.",
-    image: "/images/clinic/mesoterapia-aplicacion-retocada.webp",
-    imageAlt: "Aplicación capilar localizada sin procedimiento invasivo visible",
+    image: null,
+    imageAlt: "",
     description: "Consiste en aplicaciones localizadas seleccionadas según las características del cuero cabelludo y los objetivos definidos durante la consulta.",
     details: ["Plan individualizado", "Sesiones definidas según cada caso", "Seguimiento de la respuesta al tratamiento"],
   },
@@ -102,16 +102,18 @@ export default function Treatments({ copy }) {
       {activeTreatment && (
         <div className={styles.modalBackdrop} role="presentation" onMouseDown={() => setActiveTreatment(null)}>
           <article
-            className={styles.modal}
+            className={`${styles.modal} ${!activeTreatment.image ? styles.modalWithoutImage : ""}`}
             role="dialog"
             aria-modal="true"
             aria-labelledby="treatment-modal-title"
             onMouseDown={(event) => event.stopPropagation()}
           >
             <button className={styles.closeButton} type="button" onClick={() => setActiveTreatment(null)} aria-label={copy.treatments[5]}>×</button>
-            <div className={styles.modalImage}>
-              <Image src={assetPath(activeTreatment.image)} alt={activeTreatment.imageAlt} fill sizes="(max-width: 900px) 100vw, 44vw" />
-            </div>
+            {activeTreatment.image && (
+              <div className={styles.modalImage}>
+                <Image src={assetPath(activeTreatment.image)} alt={activeTreatment.imageAlt} fill sizes="(max-width: 900px) 100vw, 44vw" />
+              </div>
+            )}
             <div className={styles.modalContent}>
               <span className={styles.modalTag}>{activeTreatment.tag}</span>
               <h3
