@@ -38,8 +38,8 @@ const treatmentMedia = [
     formValue: "Mesoterapia capilar",
     tag: "Tratamiento personalizado",
     text: "Aplicación localizada según las necesidades identificadas durante la evaluación.",
-    image: null,
-    imageAlt: "",
+    image: "/images/clinic/mesoterapia-capilar-jeringa-tomento.webp",
+    imageAlt: "Aplicación de mesoterapia capilar con jeringa y solución transparente en Tomento",
     description: "Consiste en aplicaciones localizadas seleccionadas según las características del cuero cabelludo y los objetivos definidos durante la consulta.",
     details: ["Plan individualizado", "Sesiones definidas según cada caso", "Seguimiento de la respuesta al tratamiento"],
   },
@@ -56,10 +56,32 @@ const treatmentMedia = [
   },
 ];
 
-export default function Treatments({ copy }) {
+const treatmentImageAlts = {
+  es: [
+    "Judith De Vito durante la preparación de un microimplante capilar en Tomento",
+    "Muestra de plasma rico en plaquetas preparada en Tomento Capilar",
+    "Aplicación de mesoterapia capilar con jeringa y solución transparente en Tomento",
+    "Judith De Vito realizando el diseño previo de la línea capilar",
+  ],
+  en: [
+    "Judith De Vito preparing an FUE hair transplant procedure at Tomento Capilar",
+    "Platelet-rich plasma sample prepared at Tomento Capilar",
+    "Hair mesotherapy application with a syringe and clear solution at Tomento Capilar",
+    "Judith De Vito designing a personalized hairline before treatment",
+  ],
+  pt: [
+    "Judith De Vito durante a preparação de um microimplante capilar FUE na Tomento",
+    "Amostra de plasma rico em plaquetas preparada na Tomento Capilar",
+    "Aplicação de mesoterapia capilar com seringa e solução transparente na Tomento Capilar",
+    "Judith De Vito realizando o desenho personalizado da linha capilar",
+  ],
+};
+
+export default function Treatments({ locale, copy }) {
   const [activeTreatment, setActiveTreatment] = useState(null);
   const treatments = copy.treatmentItems.map(([title, formValue, tag, text, description, details], index) => ({
     ...treatmentMedia[index], title, formValue, tag, text, description, details,
+    imageAlt: treatmentImageAlts[locale][index],
   }));
 
   function handleEvaluationRequest(event) {
@@ -110,7 +132,7 @@ export default function Treatments({ copy }) {
           >
             <button className={styles.closeButton} type="button" onClick={() => setActiveTreatment(null)} aria-label={copy.treatments[5]}>×</button>
             {activeTreatment.image && (
-              <div className={styles.modalImage}>
+              <div className={`${styles.modalImage} ${activeTreatment.number === "03" ? styles.modalImageContain : ""}`}>
                 <Image src={assetPath(activeTreatment.image)} alt={activeTreatment.imageAlt} fill sizes="(max-width: 900px) 100vw, 44vw" />
               </div>
             )}

@@ -11,37 +11,14 @@ export default function Hero({ locale, copy }) {
         <div className={styles.content}>
           <p className={styles.eyebrow}>{copy.hero[0]}</p>
           <h1>{copy.hero[1]}</h1>
-          <div className={styles.intro}>
-            {copy.hero[2].split("\n\n").map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
-          </div>
-
-          <div className={styles.actions}>
-            <WhatsAppButton locale={locale}>{copy.hero[3]}</WhatsAppButton>
-            <a className={styles.resultsLink} href="#resultados">
-              {copy.hero[4]} <ArrowIcon direction="down" />
-            </a>
-          </div>
-
-          <div className={styles.credentials}>
-            <div className={styles.credential}>
-              <span>Eliana Judith De Vito</span>
-              <span>Lic. en Instrumentación Quirúrgica · Tricoterapeuta · Matrícula 16.509</span>
-            </div>
-            <div className={styles.credential}>
-              <span>Dr. Hernán Ramón Eduardo López</span>
-              <span>Médico especialista en implante capilar · Matrícula MN 199.837</span>
-            </div>
-          </div>
         </div>
 
         <div className={styles.visual}>
           <div className={styles.heroPortrait}>
             <Image
               className={styles.teamImage}
-              src={assetPath("/images/professionals/judith-hernan-equipo.webp")}
-              alt={locale === "en" ? "Judith De Vito and Dr. Hernán López, Tomento Capilar team" : locale === "pt" ? "Judith De Vito e Dr. Hernán López, equipe Tomento Capilar" : "Judith De Vito y el Dr. Hernán López, equipo de Tomento Capilar"}
+              src={assetPath("/images/professionals/judith-hernan-microimplante-tomento.webp")}
+              alt={locale === "en" ? "Judith De Vito and Dr. Hernán López working together at Tomento Capilar" : locale === "pt" ? "Judith De Vito e Dr. Hernán López trabalhando juntos na Tomento Capilar" : "Judith De Vito y el Dr. Hernán López trabajando juntos en Tomento Capilar"}
               fill
               sizes="(max-width: 700px) 100vw, 42vw"
               priority
@@ -49,6 +26,29 @@ export default function Hero({ locale, copy }) {
           </div>
         </div>
 
+        <div className={styles.intro}>
+          {copy.hero[2].split("\n\n").map((paragraph, index, paragraphs) => (
+            <p className={index === paragraphs.length - 1 ? styles.tagline : undefined} key={paragraph}>{paragraph}</p>
+          ))}
+        </div>
+
+        <div className={styles.actions}>
+          <WhatsAppButton locale={locale}>{copy.hero[3]}</WhatsAppButton>
+          <a className={styles.resultsLink} href="#resultados">
+            {copy.hero[4]} <ArrowIcon direction="down" />
+          </a>
+        </div>
+
+        <div className={styles.credentials}>
+          <div className={styles.credential}>
+            <span>Eliana Judith De Vito</span>
+            <span>Lic. en Instrumentación Quirúrgica · Tricoterapeuta · Matrícula 16.509</span>
+          </div>
+          <div className={styles.credential}>
+            <span>Dr. Hernán Ramón Eduardo López</span>
+            <span>Médico especialista en implante capilar · Matrícula MN 199.837</span>
+          </div>
+        </div>
       </div>
     </section>
   );

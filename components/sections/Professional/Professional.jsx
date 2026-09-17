@@ -17,10 +17,25 @@ const professionals = [
     role: "Médico · Especialista en implante capilar con técnica FUE",
     bio: "Enfoque médico orientado a la planificación personalizada y a la obtención de resultados naturales.",
     license: "Matrícula MN 199.837",
-    image: "/images/professionals/hernan-lopez.webp",
+    image: "/images/professionals/dr-hernan-lopez-tomento-capilar.webp",
     imageAlt: "Doctor Hernán López, médico especialista en implante capilar",
   },
 ];
+
+const professionalImageAlts = {
+  es: [
+    "Licenciada Judith De Vito, profesional de Tomento Capilar",
+    "Doctor Hernán López, médico especialista en implante capilar FUE",
+  ],
+  en: [
+    "Judith De Vito, surgical instrumentation specialist at Tomento Capilar",
+    "Dr. Hernán López, physician specializing in FUE hair transplantation",
+  ],
+  pt: [
+    "Judith De Vito, instrumentadora cirúrgica da Tomento Capilar",
+    "Dr. Hernán López, médico especialista em implante capilar FUE",
+  ],
+};
 
 export default function Professional({ locale, copy }) {
   return (
@@ -34,7 +49,7 @@ export default function Professional({ locale, copy }) {
               <div className={styles.portrait}>
                 <Image
                   src={assetPath(professional.image)}
-                  alt={professional.imageAlt}
+                  alt={professionalImageAlts[locale][index]}
                   fill
                   sizes="(max-width: 760px) 100vw, 38vw"
                   priority={index === 0}

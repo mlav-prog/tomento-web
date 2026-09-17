@@ -48,6 +48,13 @@ const cases = [
 export default function Results({ locale, copy }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const activeCase = cases[activeIndex];
+  const localizedViews = locale === "en"
+    ? ["Female hair progress", "Darío’s progress — 9 months", "Male hair progress", "Front view", "Top view", "Crown view"]
+    : locale === "pt"
+      ? ["Evolução capilar feminina", "Evolução de Darío — 9 meses", "Evolução capilar masculina", "Vista frontal", "Vista superior", "Vista da coroa"]
+      : cases.map((item) => item.view);
+  const activeView = localizedViews[activeIndex];
+  const imageContext = locale === "en" ? "hair treatment" : locale === "pt" ? "tratamento capilar" : "tratamiento capilar";
 
   const showPrevious = () => {
     setActiveIndex((current) => (current === 0 ? cases.length - 1 : current - 1));
@@ -84,7 +91,7 @@ export default function Results({ locale, copy }) {
           <article className={styles.case} key={activeCase.view}>
             <div className={styles.caseInfo}>
               <span>{copy.results[4]}</span>
-              <h3>{locale === "en" ? ["Female hair progress", "Darío’s progress — 9 months", "Male hair progress", "Front view", "Top view", "Crown view"][activeIndex] : locale === "pt" ? ["Evolução capilar feminina", "Evolução de Darío — 9 meses", "Evolução capilar masculina", "Vista frontal", "Vista superior", "Vista da coroa"][activeIndex] : activeCase.view}</h3>
+              <h3>{activeView}</h3>
               <p>{locale === "en" ? "Photographic comparison of the same patient during their progress and professional follow-up." : locale === "pt" ? "Comparação fotográfica do mesmo paciente durante sua evolução e acompanhamento profissional." : activeCase.description ?? "Comparación fotográfica del mismo paciente durante su proceso de evolución y seguimiento profesional."}</p>
               <a href="#contacto">{copy.results[5]} <ArrowIcon /></a>
             </div>
@@ -93,7 +100,7 @@ export default function Results({ locale, copy }) {
               <figure>
                 <Image
                   src={assetPath(activeCase.before)}
-                  alt={`${activeCase.view} ${copy.results[6].toLowerCase()}`}
+                  alt={`${activeView}: ${copy.results[6].toLowerCase()} — ${imageContext}`}
                   fill
                   sizes="(max-width: 780px) 50vw, 28vw"
                 />
@@ -102,7 +109,7 @@ export default function Results({ locale, copy }) {
               <figure>
                 <Image
                   src={assetPath(activeCase.after)}
-                  alt={`${activeCase.view} ${copy.results[7].toLowerCase()}`}
+                  alt={`${activeView}: ${copy.results[7].toLowerCase()} — ${imageContext}`}
                   fill
                   sizes="(max-width: 780px) 50vw, 28vw"
                 />
@@ -118,7 +125,7 @@ export default function Results({ locale, copy }) {
                 key={item.view}
                 className={index === activeIndex ? styles.activeDot : undefined}
                 onClick={() => setActiveIndex(index)}
-                aria-label={`${locale === "en" ? "View" : locale === "pt" ? "Ver" : "Ver"} ${item.view}`}
+                aria-label={`${locale === "en" ? "View" : "Ver"} ${localizedViews[index]}`}
                 aria-current={index === activeIndex ? "true" : undefined}
               />
             ))}

@@ -31,7 +31,7 @@ export default function SitePage({ locale = "es" }) {
       <ScrollReveal />
       <Header locale={locale} copy={text} />
       <Hero locale={locale} copy={text} />
-      <Treatments copy={text} />
+      <Treatments locale={locale} copy={text} />
       <Process copy={text} />
       <Results locale={locale} copy={text} />
       <Professional locale={locale} copy={text} />
