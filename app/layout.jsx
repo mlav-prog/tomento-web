@@ -1,6 +1,9 @@
 import "./globals.css";
+import Script from "next/script";
 import { assetPath } from "@/lib/assets";
 import { site } from "@/content/site";
+
+const analyticsId = "G-W1ED5ECDBJ";
 
 export const metadata = {
   metadataBase: new URL(site.url),
@@ -49,7 +52,19 @@ export default function RootLayout({ children }) {
         "--leaf-background": `url("${assetPath("/images/brand/leaf-background.webp")}")`,
       }}
     >
-      <body>{children}</body>
+      <body>
+        {children}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${analyticsId}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${analyticsId}');`}
+        </Script>
+      </body>
     </html>
   );
 }
