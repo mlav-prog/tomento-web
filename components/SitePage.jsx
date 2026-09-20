@@ -21,7 +21,7 @@ export default function SitePage({ locale = "es" }) {
     name: site.name,
     url: `${site.url.replace(/\/$/, "")}${text.path}`,
     telephone: "+54 9 11 2815 6799",
-    sameAs: [site.instagram],
+    sameAs: [site.instagram, site.tiktok],
     address: { "@type": "PostalAddress", streetAddress: "Junín 246, 2.º A", addressLocality: "Ciudad Autónoma de Buenos Aires", addressCountry: "AR" },
   };
 

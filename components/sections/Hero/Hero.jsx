@@ -27,9 +27,19 @@ export default function Hero({ locale, copy }) {
         </div>
 
         <div className={styles.intro}>
-          {copy.hero[2].split("\n\n").map((paragraph, index, paragraphs) => (
-            <p className={index === paragraphs.length - 1 ? styles.tagline : undefined} key={paragraph}>{paragraph}</p>
-          ))}
+          {copy.hero[2].split("\n\n").map((paragraph, index, paragraphs) => {
+            const isClosing = index === paragraphs.length - 1;
+            const separator = isClosing ? paragraph.lastIndexOf(",") : -1;
+
+            return (
+              <p key={paragraph}>
+                {separator >= 0 ? paragraph.slice(0, separator + 1) : paragraph}
+                {separator >= 0 && (
+                  <span className={styles.tagline}>{paragraph.slice(separator + 1)}</span>
+                )}
+              </p>
+            );
+          })}
         </div>
 
         <div className={styles.actions}>

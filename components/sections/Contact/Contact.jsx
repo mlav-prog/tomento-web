@@ -1,4 +1,5 @@
 import ContactForm from "./ContactForm";
+import { site } from "@/content/site";
 import styles from "./Contact.module.css";
 
 export default function Contact({ locale, copy }) {
@@ -23,7 +24,10 @@ export default function Contact({ locale, copy }) {
               <span>{copy.contact[6]}</span>
               <h3>{copy.contact[7]}</h3>
               <p>{copy.contact[8]}</p>
-              <a className={styles.secondaryLink} href="https://www.instagram.com/tomentocapilar/" target="_blank" rel="noreferrer">{copy.contact[9]}</a>
+              <div className={styles.socialLinks}>
+                <a className={styles.secondaryLink} href={site.instagram} target="_blank" rel="noreferrer">{copy.contact[9]}</a>
+                <a className={styles.secondaryLink} href={site.tiktok} target="_blank" rel="noreferrer">{locale === "en" ? "View TikTok" : locale === "pt" ? "Ver TikTok" : "Ver TikTok"}</a>
+              </div>
             </article>
           </aside>
         </div>

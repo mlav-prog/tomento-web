@@ -81,7 +81,8 @@
 }
 
 .intro .tagline {
-  color: rgba(255, 255, 255, 0.94);
+  color: var(--color-beige);
+  font-style: italic;
   font-weight: 700;
 }
 

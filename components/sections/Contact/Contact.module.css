@@ -26,6 +26,7 @@
 .primaryLink,.secondaryLink { min-height: 44px; padding: 0 16px; }
 .primaryLink { color: white; background: var(--color-green); }
 .secondaryLink { color: var(--color-green-deep); background: var(--color-beige); }
+.socialLinks { display: flex; flex-wrap: wrap; gap: 10px; }
 .location { margin-top: 22px; }
 .locationHeader { margin-bottom: 14px; padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
 .locationHeader div { display: grid; gap: 7px; }

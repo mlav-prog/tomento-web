@@ -12,6 +12,7 @@ function FooterIcon({ type }) {
     location: <><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></>,
     whatsapp: <><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4A8 8 0 1 1 20 11.5Z"/><path d="M9 8.5c.5 2.3 2.2 4 4.5 4.8"/></>,
     instagram: <><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.5"/><path d="M17.5 6.5h.01"/></>,
+    tiktok: <path d="M14 4v10.5a4 4 0 1 1-3.3-3.94M14 4c.55 2.35 2.08 3.82 4 4"/>,
   };
   return <svg className={styles.icon} viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">{paths[type]}</svg>;
 }
@@ -76,9 +77,13 @@ export default function Footer({ locale, copy }) {
               <FooterIcon type="whatsapp" />
               +54 9 11 2815-6799
             </a>
-            <a className={styles.iconLink} href="https://www.instagram.com/tomentocapilar/" target="_blank" rel="noreferrer">
+            <a className={styles.iconLink} href={site.instagram} target="_blank" rel="noreferrer">
               <FooterIcon type="instagram" />
               @tomentocapilar
+            </a>
+            <a className={styles.iconLink} href={site.tiktok} target="_blank" rel="noreferrer">
+              <FooterIcon type="tiktok" />
+              @tomento.capilar
             </a>
           </address>
         </div>

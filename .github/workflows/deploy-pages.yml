@@ -38,7 +38,7 @@ jobs:
 
       - name: Build static site
         env:
-          NEXT_PUBLIC_BASE_PATH: /tomento-web
+          NEXT_PUBLIC_SITE_URL: https://tomentocapilar.com.ar/
         run: npm run build
 
       - name: Upload Pages artifact
