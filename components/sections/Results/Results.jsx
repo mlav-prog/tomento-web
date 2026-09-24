@@ -29,6 +29,12 @@ const cases = [
     after: "/images/results/caso-masculino-despues.jpeg",
   },
   {
+    view: "Evolución capilar — vista superior",
+    description: "Comparación de la zona superior del mismo paciente durante su seguimiento capilar.",
+    before: "/images/results/caso-superior-nuevo-antes.webp",
+    after: "/images/results/caso-superior-nuevo-evolucion.webp",
+  },
+  {
     view: "Vista frontal",
     before: "/images/results/caso-santi-frontal-antes.jpeg",
     after: "/images/results/caso-santi-frontal-evolucion.jpeg",
@@ -49,9 +55,9 @@ export default function Results({ locale, copy }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const activeCase = cases[activeIndex];
   const localizedViews = locale === "en"
-    ? ["Female hair progress", "Darío’s progress — 9 months", "Male hair progress", "Front view", "Top view", "Crown view"]
+    ? ["Female hair progress", "Darío’s progress — 9 months", "Male hair progress", "Hair progress — top view", "Front view", "Top view", "Crown view"]
     : locale === "pt"
-      ? ["Evolução capilar feminina", "Evolução de Darío — 9 meses", "Evolução capilar masculina", "Vista frontal", "Vista superior", "Vista da coroa"]
+      ? ["Evolução capilar feminina", "Evolução de Darío — 9 meses", "Evolução capilar masculina", "Evolução capilar — vista superior", "Vista frontal", "Vista superior", "Vista da coroa"]
       : cases.map((item) => item.view);
   const activeView = localizedViews[activeIndex];
   const imageContext = locale === "en" ? "hair treatment" : locale === "pt" ? "tratamento capilar" : "tratamiento capilar";

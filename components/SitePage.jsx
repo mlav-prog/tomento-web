@@ -6,6 +6,7 @@ import Hero from "@/components/sections/Hero/Hero";
 import Process from "@/components/sections/Process/Process";
 import Professional from "@/components/sections/Professional/Professional";
 import Results from "@/components/sections/Results/Results";
+import Reviews from "@/components/sections/Reviews/Reviews";
 import Treatments from "@/components/sections/Treatments/Treatments";
 import FloatingWhatsApp from "@/components/ui/FloatingWhatsApp/FloatingWhatsApp";
 import ScrollReveal from "@/components/ui/ScrollReveal/ScrollReveal";
@@ -34,6 +35,7 @@ export default function SitePage({ locale = "es" }) {
       <Treatments locale={locale} copy={text} />
       <Process copy={text} />
       <Results locale={locale} copy={text} />
+      <Reviews copy={text} />
       <Professional locale={locale} copy={text} />
       <FAQ locale={locale} copy={text} />
       <Contact locale={locale} copy={text} />

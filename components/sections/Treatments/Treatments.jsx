@@ -18,6 +18,16 @@ const treatmentMedia = [
     text: "Redistribución de unidades foliculares mediante una técnica mínimamente invasiva y personalizada.",
     image: "/images/clinic/microimplante-tomento.webp",
     imageAlt: "Judith De Vito durante la preparación de un microimplante capilar en Tomento",
+    gallery: [
+      {
+        image: "/images/clinic/microimplante-tomento.webp",
+        alt: "Judith De Vito durante la preparación de un microimplante capilar en Tomento",
+      },
+      {
+        image: "/images/clinic/equipo-microimplante-capilar-tomento.webp",
+        alt: "Equipo de Tomento Capilar trabajando durante un microimplante capilar FUE",
+      },
+    ],
     description: "La técnica FUE permite extraer unidades foliculares de una zona donante e implantarlas de forma individual en las áreas que requieren mayor cobertura.",
     details: ["Diseño adaptado a cada paciente", "Procedimiento planificado por el equipo profesional", "Controles y seguimiento durante la evolución"],
   },
@@ -51,6 +61,16 @@ const treatmentMedia = [
     text: "Técnica orientada a recrear visualmente una mayor densidad capilar de manera personalizada.",
     image: "/images/clinic/diseno-capilar.webp",
     imageAlt: "Judith De Vito realizando el diseño previo de la línea capilar",
+    gallery: [
+      {
+        image: "/images/clinic/diseno-capilar.webp",
+        alt: "Judith De Vito realizando el diseño previo de la línea capilar",
+      },
+      {
+        image: "/images/clinic/microdermopigmentacion-capilar-judith-tomento.webp",
+        alt: "Judith De Vito realizando una sesión de microdermopigmentación capilar en Tomento",
+      },
+    ],
     description: "Mediante la aplicación precisa de pigmentos se busca recrear visualmente folículos y aportar una apariencia de mayor densidad en áreas seleccionadas.",
     details: ["Diseño previo personalizado", "Pigmentación adaptada al tono del paciente", "Indicaciones de cuidado y controles posteriores"],
   },
@@ -77,12 +97,60 @@ const treatmentImageAlts = {
   ],
 };
 
+const galleryAlts = {
+  es: {
+    "01": [
+      "Judith De Vito durante la preparación de un microimplante capilar en Tomento",
+      "Equipo de Tomento Capilar trabajando durante un microimplante capilar FUE",
+    ],
+    "04": [
+      "Judith De Vito realizando el diseño previo de la línea capilar",
+      "Judith De Vito realizando una sesión de microdermopigmentación capilar en Tomento",
+    ],
+  },
+  en: {
+    "01": [
+      "Judith De Vito preparing an FUE hair transplant procedure at Tomento Capilar",
+      "Tomento Capilar team working during an FUE hair transplant procedure",
+    ],
+    "04": [
+      "Judith De Vito designing a personalized hairline before treatment",
+      "Judith De Vito performing a scalp micropigmentation session at Tomento Capilar",
+    ],
+  },
+  pt: {
+    "01": [
+      "Judith De Vito durante a preparação de um microimplante capilar FUE na Tomento",
+      "Equipe da Tomento Capilar trabalhando durante um microimplante capilar FUE",
+    ],
+    "04": [
+      "Judith De Vito realizando o desenho personalizado da linha capilar",
+      "Judith De Vito realizando uma sessão de micropigmentação capilar na Tomento",
+    ],
+  },
+};
+
 export default function Treatments({ locale, copy }) {
   const [activeTreatment, setActiveTreatment] = useState(null);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
   const treatments = copy.treatmentItems.map(([title, formValue, tag, text, description, details], index) => ({
     ...treatmentMedia[index], title, formValue, tag, text, description, details,
     imageAlt: treatmentImageAlts[locale][index],
+    gallery: treatmentMedia[index].gallery?.map((item, galleryIndex) => ({
+      ...item,
+      alt: galleryAlts[locale]?.[treatmentMedia[index].number]?.[galleryIndex] ?? item.alt,
+    })),
   }));
+
+  const activeGallery = activeTreatment?.gallery ?? (activeTreatment?.image
+    ? [{ image: activeTreatment.image, alt: activeTreatment.imageAlt }]
+    : []);
+  const activeImage = activeGallery[activeImageIndex] ?? activeGallery[0];
+
+  function openTreatment(item) {
+    setActiveImageIndex(0);
+    setActiveTreatment(item);
+  }
 
   function handleEvaluationRequest(event) {
     event.preventDefault();
@@ -113,7 +181,7 @@ export default function Treatments({ locale, copy }) {
             <article className={`${styles.card} ${item.featured ? styles.featured : ""}`} key={item.number}>
               <div className={styles.top}><span>{item.number}</span><span>{item.tag}</span></div>
               <div><h3>{item.title}</h3><p>{item.text}</p></div>
-              <button type="button" className={styles.moreButton} onClick={() => setActiveTreatment(item)}>
+              <button type="button" className={styles.moreButton} onClick={() => openTreatment(item)}>
                 {copy.treatments[3]} <ArrowIcon />
               </button>
             </article>
@@ -131,9 +199,23 @@ export default function Treatments({ locale, copy }) {
             onMouseDown={(event) => event.stopPropagation()}
           >
             <button className={styles.closeButton} type="button" onClick={() => setActiveTreatment(null)} aria-label={copy.treatments[5]}>×</button>
-            {activeTreatment.image && (
+            {activeImage && (
               <div className={`${styles.modalImage} ${activeTreatment.number === "03" ? styles.modalImageContain : ""}`}>
-                <Image src={assetPath(activeTreatment.image)} alt={activeTreatment.imageAlt} fill sizes="(max-width: 900px) 100vw, 44vw" />
+                <Image src={assetPath(activeImage.image)} alt={activeImage.alt} fill sizes="(max-width: 900px) 100vw, 44vw" />
+                {activeGallery.length > 1 && (
+                  <div className={styles.imagePicker} aria-label={locale === "en" ? "Treatment photos" : locale === "pt" ? "Fotos do tratamento" : "Fotos del tratamiento"}>
+                    {activeGallery.map((item, index) => (
+                      <button
+                        type="button"
+                        key={item.image}
+                        className={index === activeImageIndex ? styles.activeImageButton : undefined}
+                        onClick={() => setActiveImageIndex(index)}
+                        aria-label={`${locale === "en" ? "View photo" : locale === "pt" ? "Ver foto" : "Ver foto"} ${index + 1}`}
+                        aria-current={index === activeImageIndex ? "true" : undefined}
+                      />
+                    ))}
+                  </div>
+                )}
               </div>
             )}
             <div className={styles.modalContent}>
