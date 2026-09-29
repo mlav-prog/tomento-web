@@ -35,7 +35,7 @@ export default function Header({ locale, copy }) {
             <a href={assetPath("/en/")} aria-current={locale === "en" ? "page" : undefined}>EN</a>
             <a href={assetPath("/pt/")} aria-current={locale === "pt" ? "page" : undefined}>PT</a>
           </div>
-          <WhatsAppButton variant="outline" locale={locale}>{copy.consult}</WhatsAppButton>
+          <WhatsAppButton variant="outline" locale={locale} placement="header">{copy.consult}</WhatsAppButton>
         </div>
 
         <MobileNavigation items={navigation} locale={locale} copy={copy} />

@@ -43,7 +43,7 @@ export default function Hero({ locale, copy }) {
         </div>
 
         <div className={styles.actions}>
-          <WhatsAppButton locale={locale}>{copy.hero[3]}</WhatsAppButton>
+          <WhatsAppButton locale={locale} placement="hero">{copy.hero[3]}</WhatsAppButton>
           <a className={styles.resultsLink} href="#resultados">
             {copy.hero[4]} <ArrowIcon direction="down" />
           </a>

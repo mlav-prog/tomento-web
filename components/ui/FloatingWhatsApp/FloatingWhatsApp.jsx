@@ -1,5 +1,8 @@
+"use client";
+
 import { site } from "@/content/site";
 import { createWhatsAppUrl } from "@/lib/whatsapp";
+import { trackEvent } from "@/lib/analytics";
 import styles from "./FloatingWhatsApp.module.css";
 
 export default function FloatingWhatsApp({ locale, label }) {
@@ -10,6 +13,7 @@ export default function FloatingWhatsApp({ locale, label }) {
       href={createWhatsAppUrl(site.whatsapp, message)}
       target="_blank"
       rel="noreferrer"
+      onClick={() => trackEvent("whatsapp_click", { placement: "floating_button" })}
       aria-label={`${label} Tomento Capilar WhatsApp`}
     >
       <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">

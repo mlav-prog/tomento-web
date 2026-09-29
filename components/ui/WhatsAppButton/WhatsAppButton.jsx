@@ -1,9 +1,12 @@
+"use client";
+
 import { createWhatsAppUrl } from "@/lib/whatsapp";
+import { trackEvent } from "@/lib/analytics";
 import { site } from "@/content/site";
 import ArrowIcon from "@/components/ui/ArrowIcon/ArrowIcon";
 import styles from "./WhatsAppButton.module.css";
 
-export default function WhatsAppButton({ children, variant = "solid", locale = "es" }) {
+export default function WhatsAppButton({ children, variant = "solid", locale = "es", placement = "button" }) {
   const message = locale === "en" ? "Hello, I would like to request an assessment at Tomento Capilar." : locale === "pt" ? "Olá, gostaria de solicitar uma avaliação na Tomento Capilar." : site.whatsappMessage;
   return (
     <a
@@ -11,6 +14,7 @@ export default function WhatsAppButton({ children, variant = "solid", locale = "
       href={createWhatsAppUrl(site.whatsapp, message)}
       target="_blank"
       rel="noreferrer"
+      onClick={() => trackEvent("whatsapp_click", { placement })}
       aria-label={`${children}. ${locale === "en" ? "Opens WhatsApp in a new tab" : locale === "pt" ? "Abre o WhatsApp em uma nova aba" : "Abre WhatsApp en una pestaña nueva"}`}
     >
       <span>{children}</span>

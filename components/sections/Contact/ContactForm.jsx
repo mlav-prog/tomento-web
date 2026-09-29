@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { site } from "@/content/site";
 import { getCopy } from "@/content/locales";
 import { createWhatsAppUrl } from "@/lib/whatsapp";
+import { trackEvent } from "@/lib/analytics";
 import { TREATMENT_SELECTION_EVENT } from "@/lib/treatmentSelection";
 import styles from "./Contact.module.css";
 
@@ -41,6 +42,11 @@ export default function ContactForm({ locale }) {
       `${text.message}: ${form.get("message") || text.noMessage}`,
     ].join("\n");
 
+    trackEvent("evaluation_request", {
+      treatment: form.get("treatment"),
+      locale,
+    });
+    trackEvent("whatsapp_click", { placement: "contact_form" });
     window.location.assign(createWhatsAppUrl(site.whatsapp, message));
   }
 

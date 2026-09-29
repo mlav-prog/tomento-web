@@ -172,6 +172,16 @@ export default function Treatments({ locale, copy }) {
     };
   }, [activeTreatment]);
 
+  useEffect(() => {
+    if (!activeTreatment || activeGallery.length <= 1) return undefined;
+
+    const interval = window.setInterval(() => {
+      setActiveImageIndex((current) => (current + 1) % activeGallery.length);
+    }, 5000);
+
+    return () => window.clearInterval(interval);
+  }, [activeTreatment, activeGallery.length]);
+
   return (
     <section className={styles.section} id="tratamientos">
       <div className={styles.inner}>
