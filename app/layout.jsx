@@ -41,6 +41,11 @@ export const metadata = {
     description: "Tratamientos capilares personalizados y seguimiento profesional en CABA.",
     images: [`${site.url.replace(/\/$/, "")}/images/social/tomento-og.jpg`],
   },
+  verification: {
+    other: {
+      "facebook-domain-verification": "9n0tbg8qbxkxu3e4dbjjlpyoppzkh6",
+    },
+  },
   robots: { index: true, follow: true },
 };
 
