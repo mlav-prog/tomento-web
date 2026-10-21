@@ -12,11 +12,11 @@
   "send_email": [
     {
       "name": "EMAIL",
-      "destination_address": "matiaslavoy1997@gmail.com"
+      "destination_address": "tomentocapilar@gmail.com"
     }
   ],
   "vars": {
-    "EMAIL_TO": "matiaslavoy1997@gmail.com",
+    "EMAIL_TO": "tomentocapilar@gmail.com",
     "EMAIL_FROM": "consultas@tomentocapilar.com.ar"
   }
 }
