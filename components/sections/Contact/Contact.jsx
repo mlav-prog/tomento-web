@@ -1,5 +1,6 @@
 import ContactForm from "./ContactForm";
 import { site } from "@/content/site";
+import { assetPath } from "@/lib/assets";
 import styles from "./Contact.module.css";
 
 export default function Contact({ locale, copy }) {
@@ -12,6 +13,18 @@ export default function Contact({ locale, copy }) {
           <p>{copy.contact[2]}</p>
         </header>
 
+        <div className={styles.onlineAssessment}>
+          <div>
+            <span>{locale === "en" ? "A more complete first step" : locale === "pt" ? "Um primeiro passo mais completo" : "Un primer paso más completo"}</span>
+            <h3>{locale === "en" ? "Would you like a more complete assessment?" : locale === "pt" ? "Quer uma avaliação mais completa?" : "¿Querés una evaluación más completa?"}</h3>
+            <p>{locale === "en" ? "Complete the online consultation and briefly tell us about your case before your appointment." : locale === "pt" ? "Preencha a consulta online e conte brevemente o seu caso antes da avaliação." : "Completá la consulta online y contanos brevemente tu caso antes de la evaluación."}</p>
+          </div>
+          <a className={styles.onlineAssessmentLink} href={assetPath("/consulta-online/")}>
+            {locale === "en" ? "Start online assessment" : locale === "pt" ? "Iniciar avaliação online" : "Iniciar consulta online"}
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+
         <div className={styles.contactGrid}>
           <ContactForm locale={locale} />
           <aside className={styles.aside}>
@@ -19,6 +32,9 @@ export default function Contact({ locale, copy }) {
               <span>{copy.contact[3]}</span>
               <h3>{copy.contact[4]}</h3>
               <p>{copy.contact[5]}</p>
+              <a className={styles.primaryLink} href={site.whatsapp} target="_blank" rel="noreferrer">
+                {locale === "en" ? "Quick inquiry on WhatsApp" : locale === "pt" ? "Consulta rápida pelo WhatsApp" : "Consulta rápida por WhatsApp"}
+              </a>
             </article>
             <article>
               <span>{copy.contact[6]}</span>

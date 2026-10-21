@@ -39,6 +39,7 @@ jobs:
       - name: Build static site
         env:
           NEXT_PUBLIC_SITE_URL: https://tomentocapilar.com.ar/
+          NEXT_PUBLIC_CONSULTATION_API_URL: https://consultas.tomentocapilar.com.ar/api/consulta
         run: npm run build
 
       - name: Upload Pages artifact

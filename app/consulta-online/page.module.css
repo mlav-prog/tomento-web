@@ -1,0 +1,13 @@
+.page { min-height: 100svh; color: var(--color-green-deep); background: #f3f0e9; }
+.header { width: 100%; min-height: 92px; padding: 14px max(24px,calc((100vw - var(--content-width))/2)); display: flex; align-items: center; justify-content: space-between; gap: 24px; color: white; background: rgba(20,33,22,.97); }
+.brand { width: 112px; height: 60px; display: grid; place-items: center; overflow: hidden; }
+.brand img { width: 105px; height: auto; }
+.backLink { min-height: 44px; padding: 0 17px; border: 1px solid rgba(255,255,255,.35); border-radius: 999px; display: inline-flex; align-items: center; font-size: .78rem; font-weight: 700; }
+.hero { padding: clamp(54px,7vw,92px) 24px 34px; text-align: center; background: linear-gradient(180deg,#e7e1d6 0%,#f3f0e9 100%); }
+.eyebrow { width: fit-content; margin: 0 auto 18px; padding: 8px 13px; border-radius: 999px; color: var(--color-taupe); background: rgba(138,124,108,.12); font-size: .68rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; }
+.hero h1 { max-width: 850px; margin: 0 auto; font-size: clamp(2.6rem,6vw,5.4rem); font-weight: 400; line-height: .98; letter-spacing: -.055em; }
+.hero > p:not(.eyebrow) { max-width: 650px; margin: 24px auto 0; color: rgba(32,46,33,.7); font-size: clamp(1rem,1.7vw,1.18rem); line-height: 1.65; }
+.reassurance { margin: 28px auto 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 9px; }
+.reassurance span { padding: 9px 13px; border: 1px solid rgba(45,61,45,.12); border-radius: 999px; color: rgba(32,46,33,.72); background: rgba(255,255,255,.55); font-size: .74rem; font-weight: 700; }
+.footer { width: calc(100% - 48px); max-width: var(--content-width); margin: 0 auto; padding: 30px 0 42px; border-top: 1px solid rgba(45,61,45,.14); display: flex; justify-content: space-between; gap: 20px; color: rgba(32,46,33,.58); font-size: .76rem; }
+@media (max-width: 560px) { .header { min-height: 78px; padding: 9px 16px; } .brand { width: 88px; height: 55px; } .brand img { width: 86px; } .backLink { padding: 0 13px; } .hero { padding-inline: 16px; } .footer { width: calc(100% - 32px); flex-direction: column; } }

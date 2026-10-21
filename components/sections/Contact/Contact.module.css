@@ -4,6 +4,13 @@
 .eyebrow { width: fit-content; margin: 0 auto 16px; padding: 8px 14px; border-radius: 999px; color: var(--color-taupe); background: rgba(138,124,108,.12); font-size: .68rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
 .heading h2 { margin: 0; font-family: var(--font-display); font-size: clamp(2.8rem,5vw,5rem); font-weight: 400; line-height: 1; letter-spacing: -.04em; }
 .heading > p:last-child { margin: 22px auto 0; color: rgba(32,46,33,.7); line-height: 1.6; }
+.onlineAssessment { margin: 0 0 22px; padding: clamp(24px,4vw,38px); border-radius: 18px; display: flex; align-items: center; justify-content: space-between; gap: 32px; color: white; background: var(--color-green-deep); box-shadow: 0 20px 55px rgba(32,46,33,.14); }
+.onlineAssessment > div { max-width: 720px; }
+.onlineAssessment span:first-child { color: rgba(255,255,255,.65); font-size: .68rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.onlineAssessment h3 { margin: 10px 0 12px; font-family: var(--font-display); font-size: clamp(1.75rem,3vw,2.6rem); font-weight: 400; line-height: 1.05; letter-spacing: -.025em; }
+.onlineAssessment p { margin: 0; color: rgba(255,255,255,.72); line-height: 1.6; }
+.onlineAssessmentLink { min-height: 52px; padding: 0 18px; border: 1px solid rgba(255,255,255,.28); border-radius: 9px; display: inline-flex; align-items: center; justify-content: center; gap: 14px; flex: 0 0 auto; color: var(--color-green-deep); background: var(--color-beige); font-weight: 700; }
+.onlineAssessmentLink span { font-size: 1.05rem; }
 .contactGrid { display: grid; grid-template-columns: minmax(0,1.35fr) minmax(300px,.8fr); gap: 20px; align-items: start; }
 .form,.aside article,.locationHeader { border: 1px solid rgba(45,61,45,.15); border-radius: 16px; background: rgba(255,255,255,.72); box-shadow: 0 18px 50px rgba(32,46,33,.07); }
 .form { padding: clamp(24px,4vw,40px); scroll-margin-top: 110px; }
@@ -33,5 +40,5 @@
 .locationHeader strong { font-weight: 500; }
 .locationHeader a { min-height: 42px; padding: 0 16px; color: var(--color-green-deep); background: var(--color-beige); }
 .location iframe { width: 100%; height: 360px; border: 0; border-radius: 16px; display: block; box-shadow: 0 18px 50px rgba(32,46,33,.1); }
-@media (max-width: 800px) { .contactGrid { grid-template-columns: 1fr; } }
+@media (max-width: 800px) { .onlineAssessment { align-items: flex-start; flex-direction: column; } .contactGrid { grid-template-columns: 1fr; } }
 @media (max-width: 580px) { .inner { width: calc(100% - 32px); } .fields { grid-template-columns: 1fr; } .fullField { grid-column: auto; } .locationHeader { align-items: flex-start; flex-direction: column; } .location iframe { height: 300px; } }

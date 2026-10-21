@@ -1,0 +1,22 @@
+{
+  "$schema": "https://raw.githubusercontent.com/cloudflare/workers-sdk/main/packages/wrangler/config-schema.json",
+  "name": "tomento-consultas",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-10-21",
+  "routes": [
+    {
+      "pattern": "consultas.tomentocapilar.com.ar",
+      "custom_domain": true
+    }
+  ],
+  "send_email": [
+    {
+      "name": "EMAIL",
+      "destination_address": "matiaslavoy1997@gmail.com"
+    }
+  ],
+  "vars": {
+    "EMAIL_TO": "matiaslavoy1997@gmail.com",
+    "EMAIL_FROM": "consultas@tomentocapilar.com.ar"
+  }
+}

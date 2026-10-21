@@ -7,7 +7,13 @@ import styles from "./Header.module.css";
 const anchors = ["#tratamientos", "#resultados", "#profesional", "#preguntas"];
 
 export default function Header({ locale, copy }) {
-  const navigation = copy.nav.map((label, index) => ({ label, href: anchors[index] }));
+  const navigation = [
+    ...copy.nav.map((label, index) => ({ label, href: anchors[index] })),
+    {
+      label: locale === "en" ? "Online assessment" : locale === "pt" ? "Avaliação online" : "Consulta online",
+      href: assetPath("/consulta-online/"),
+    },
+  ];
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
