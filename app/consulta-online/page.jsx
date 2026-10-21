@@ -34,8 +34,8 @@ export default function ConsultaOnlinePage() {
           Completá la información en pocos pasos. Esto nos ayuda a conocer tu caso y aprovechar mejor la primera evaluación.
         </p>
         <div className={styles.reassurance} aria-label="Información sobre la consulta">
-          <span>3 pasos</span>
-          <span>Sin carga de fotos</span>
+          <span>4 pasos</span>
+          <span>Fotos guiadas y privadas</span>
           <span>Revisión profesional</span>
         </div>
       </section>

@@ -21,13 +21,24 @@ const zoneOptions = [
   ["Zona donante", "/images/content/zone-donante.webp", "Vista posterior con la zona donante destacada"],
 ];
 
+const photoOptions = [
+  { key: "frontalClose", label: "Frontal de cerca", instruction: "Mirando de frente, encuadrá desde las cejas hasta la parte superior de la cabeza.", image: "/images/content/photo-guide-frontal-close.webp" },
+  { key: "frontalFar", label: "Frontal de lejos", instruction: "Mirando de frente, incluí el rostro completo y toda la cabeza.", image: "/images/content/photo-guide-frontal-far.webp" },
+  { key: "profileLeft", label: "Perfil izquierdo", instruction: "Girando la cabeza hacia la derecha, mostrá completo el lateral izquierdo.", image: "/images/content/photo-guide-profile-left.webp" },
+  { key: "profileRight", label: "Perfil derecho", instruction: "Girando la cabeza hacia la izquierda, mostrá completo el lateral derecho.", image: "/images/content/photo-guide-profile-right.webp" },
+  { key: "superior", label: "Vista superior", instruction: "Incliná la cabeza hacia adelante para mostrar la zona media y la coronilla.", image: "/images/content/photo-guide-superior.webp" },
+  { key: "posterior", label: "Zona posterior", instruction: "Tomá la foto desde atrás para mostrar la coronilla y la zona donante.", image: "/images/content/photo-guide-posterior.webp" },
+];
+
 export default function ConsultaOnlineForm() {
   const [step, setStep] = useState(1);
   const [data, setData] = useState(initialData);
   const [validationError, setValidationError] = useState("");
   const [submissionStatus, setSubmissionStatus] = useState("idle");
+  const [photos, setPhotos] = useState({});
+  const [photoProcessing, setPhotoProcessing] = useState("");
 
-  const progress = useMemo(() => `${Math.round((step / 3) * 100)}%`, [step]);
+  const progress = useMemo(() => `${Math.round((step / 4) * 100)}%`, [step]);
 
   function updateField(event) {
     const { name, value, checked, type } = event.target;
@@ -53,8 +64,32 @@ export default function ConsultaOnlineForm() {
       return;
     }
     setValidationError("");
-    setStep((current) => Math.min(3, current + 1));
+    if (step === 3) {
+      const missing = photoOptions.find(({ key }) => !photos[key]);
+      if (missing) {
+        setValidationError(`Agregá la foto “${missing.label}” para continuar.`);
+        document.getElementById(`photo-${missing.key}`)?.scrollIntoView({ behavior: "smooth", block: "center" });
+        return;
+      }
+    }
+    setStep((current) => Math.min(4, current + 1));
     window.scrollTo({ top: 300, behavior: "smooth" });
+  }
+
+  async function updatePhoto(key, event) {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    setPhotoProcessing(key);
+    setValidationError("");
+    try {
+      const compressed = await compressPhoto(file, key);
+      setPhotos((current) => ({ ...current, [key]: compressed }));
+    } catch {
+      setValidationError("No pudimos procesar esa imagen. Probá con una foto JPG, PNG o WEBP.");
+      event.target.value = "";
+    } finally {
+      setPhotoProcessing("");
+    }
   }
 
   async function handleDraftSubmit(event) {
@@ -72,7 +107,7 @@ export default function ConsultaOnlineForm() {
       const response = await fetch(consultationEndpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, website: "" }),
+        body: JSON.stringify({ ...data, photos: photoOptions.map(({ key, label }) => ({ ...photos[key], label })), website: "" }),
       });
 
       if (!response.ok) throw new Error("No se pudo enviar la consulta");
@@ -86,14 +121,14 @@ export default function ConsultaOnlineForm() {
     <section className={styles.shell} aria-labelledby="form-title">
       <div className={styles.progressHeader}>
         <div>
-          <span>Paso {step} de 3</span>
-          <strong id="form-title">{step === 1 ? "Datos de contacto" : step === 2 ? "Información capilar" : "Revisá tu consulta"}</strong>
+          <span>Paso {step} de 4</span>
+          <strong id="form-title">{step === 1 ? "Datos de contacto" : step === 2 ? "Información capilar" : step === 3 ? "Fotografías" : "Revisá tu consulta"}</strong>
         </div>
         <span className={styles.progressValue}>{progress}</span>
       </div>
       <div className={styles.track} aria-hidden="true"><span style={{ width: progress }} /></div>
 
-      <form className={styles.form} onSubmit={step < 3 ? goNext : handleDraftSubmit} noValidate>
+      <form className={styles.form} onSubmit={step < 4 ? goNext : handleDraftSubmit} noValidate>
         {step === 1 && (
           <fieldset>
             <legend>Empecemos por conocerte</legend>
@@ -151,8 +186,34 @@ export default function ConsultaOnlineForm() {
 
         {step === 3 && (
           <fieldset>
+            <legend>Mostranos tu caso</legend>
+            <p className={styles.intro}>Estas seis vistas ayudan al equipo a hacer una primera evaluación más precisa. Tus fotos se enviarán de forma privada junto con la consulta.</p>
+            <div className={styles.photoTips}>
+              <strong>Para que se vean bien</strong>
+              <span>Usá buena luz, cabello seco y sin productos. Evitá filtros y pedile ayuda a otra persona si es posible.</span>
+            </div>
+            <div className={styles.photoGrid}>
+              {photoOptions.map((photo) => (
+                <label className={`${styles.photoCard} ${photos[photo.key] ? styles.photoCardReady : ""}`} id={`photo-${photo.key}`} key={photo.key}>
+                  <span className={styles.photoGuide}>
+                    <Image src={assetPath(photo.image)} alt={`Ejemplo para la foto ${photo.label.toLowerCase()}`} width={480} height={480} />
+                  </span>
+                  <span className={styles.photoCopy}>
+                    <strong>{photo.label}*</strong>
+                    <small>{photo.instruction}</small>
+                  </span>
+                  <input type="file" accept="image/jpeg,image/png,image/webp" onChange={(event) => updatePhoto(photo.key, event)} disabled={photoProcessing === photo.key} />
+                  <span className={styles.photoButton}>{photoProcessing === photo.key ? "Preparando foto…" : photos[photo.key] ? "✓ Foto lista · Cambiar" : "Agregar foto"}</span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
+        )}
+
+        {step === 4 && (
+          <fieldset>
             <legend>Revisá antes de enviar</legend>
-            <p className={styles.intro}>Confirmá que la información sea correcta. No vamos a pedirte fotografías en esta primera consulta.</p>
+            <p className={styles.intro}>Confirmá que la información sea correcta. Las seis fotografías se enviarán como adjuntos privados al equipo de Tomento.</p>
             <div className={styles.summaryGrid}>
               <Summary label="Paciente" value={data.fullName} />
               <Summary label="Contacto" value={`${data.phone} · ${data.email}`} />
@@ -162,10 +223,11 @@ export default function ConsultaOnlineForm() {
               <Summary label="Objetivo principal" value={data.expectation || "No informado"} />
               <Summary label="Zonas indicadas" value={data.zones.length ? data.zones.join(", ") : "No informadas"} />
               <Summary label="Tratamientos actuales" value={data.medication.length ? data.medication.join(", ") : "No informados"} />
+              <Summary label="Fotografías" value={`${Object.keys(photos).length} fotos adjuntas`} />
             </div>
             <label className={styles.consent}>
               <input type="checkbox" name="consent" checked={data.consent} onChange={updateField} required />
-              <span>Autorizo el uso de estos datos únicamente para evaluar esta consulta y contactarme.*</span>
+              <span>Autorizo el uso de estos datos y fotografías únicamente para evaluar esta consulta y contactarme.*</span>
             </label>
             {submissionStatus === "success" ? (
               <div className={styles.successNotice} role="status">
@@ -186,7 +248,7 @@ export default function ConsultaOnlineForm() {
 
         <div className={styles.actions}>
           {step > 1 && <button type="button" className={styles.secondary} onClick={() => setStep((current) => current - 1)}>Volver</button>}
-          {step < 3 ? <button type="submit" className={styles.primary}>Continuar</button> : submissionStatus !== "success" && <button type="submit" className={styles.primary} disabled={submissionStatus === "sending"}>{submissionStatus === "sending" ? "Enviando…" : "Enviar consulta"}</button>}
+          {step < 4 ? <button type="submit" className={styles.primary} disabled={Boolean(photoProcessing)}>{photoProcessing ? "Preparando foto…" : "Continuar"}</button> : submissionStatus !== "success" && <button type="submit" className={styles.primary} disabled={submissionStatus === "sending"}>{submissionStatus === "sending" ? "Enviando…" : "Enviar consulta"}</button>}
         </div>
       </form>
     </section>
@@ -220,4 +282,40 @@ function VisualCheck({ label, image, alt, checked, onChange }) {
 
 function Summary({ label, value }) {
   return <div className={styles.summaryItem}><span>{label}</span><strong>{value || "No informado"}</strong></div>;
+}
+
+async function compressPhoto(file, key) {
+  if (!file.type.startsWith("image/")) throw new Error("Invalid image");
+  const bitmap = await createImageBitmap(file);
+  let maxSide = 900;
+  let quality = .72;
+  let blob;
+
+  for (let attempt = 0; attempt < 5; attempt += 1) {
+    const scale = Math.min(1, maxSide / Math.max(bitmap.width, bitmap.height));
+    const width = Math.max(1, Math.round(bitmap.width * scale));
+    const height = Math.max(1, Math.round(bitmap.height * scale));
+    const canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+    canvas.getContext("2d").drawImage(bitmap, 0, 0, width, height);
+    blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/jpeg", quality));
+    if (blob && blob.size <= 450_000) break;
+    quality -= .1;
+    maxSide -= 100;
+  }
+
+  bitmap.close?.();
+  if (!blob || blob.size > 600_000) throw new Error("Image too large");
+  const data = await blobToBase64(blob);
+  return { name: `${key}.jpg`, type: "image/jpeg", size: blob.size, data };
+}
+
+function blobToBase64(blob) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result).split(",")[1]);
+    reader.onerror = reject;
+    reader.readAsDataURL(blob);
+  });
 }
