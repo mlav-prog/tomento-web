@@ -60,7 +60,7 @@ export default function TreatmentLandingPage({ treatment, slug }) {
       <section className={styles.hero}>
         <div className={styles.heroCopy}>
           <p className={styles.eyebrow}>{treatment.eyebrow}</p>
-          <h1>{treatment.title}</h1>
+          <h1 className={treatment.title.length > 30 ? styles.longTitle : undefined}>{treatment.title}</h1>
           <p>{treatment.intro}</p>
           <div className={styles.actions}>
             <Link href={assetPath("/consulta-online/")} className={styles.primary}>Solicitar una evaluación</Link>
