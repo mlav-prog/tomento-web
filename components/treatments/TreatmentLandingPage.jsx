@@ -3,6 +3,7 @@ import Link from "next/link";
 import WhatsAppButton from "@/components/ui/WhatsAppButton/WhatsAppButton";
 import { assetPath } from "@/lib/assets";
 import { site } from "@/content/site";
+import { treatments } from "@/content/treatments";
 import styles from "./TreatmentLandingPage.module.css";
 
 export default function TreatmentLandingPage({ treatment, slug }) {
@@ -35,7 +36,23 @@ export default function TreatmentLandingPage({ treatment, slug }) {
           <Image src={assetPath("/images/brand/logo-white.png")} alt="Tomento Capilar" width={842} height={595} priority />
         </Link>
         <nav aria-label="Navegación del tratamiento">
-          <Link href={assetPath("/#tratamientos")}>Tratamientos</Link>
+          <details className={styles.treatmentMenu}>
+            <summary>Tratamientos <span aria-hidden="true">⌄</span></summary>
+            <div className={styles.treatmentMenuPanel}>
+              {Object.entries(treatments).map(([itemSlug, item]) => (
+                <Link
+                  key={itemSlug}
+                  href={assetPath(`/tratamientos/${itemSlug}/`)}
+                  aria-current={itemSlug === slug ? "page" : undefined}
+                >
+                  <span className={styles.treatmentMenuImage}>
+                    <Image src={assetPath(item.image)} alt="" fill sizes="48px" />
+                  </span>
+                  <span>{item.shortName}</span>
+                </Link>
+              ))}
+            </div>
+          </details>
           <Link href={assetPath("/consulta-online/")} className={styles.headerCta}>Consulta online</Link>
         </nav>
       </header>

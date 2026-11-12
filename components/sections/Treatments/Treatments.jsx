@@ -194,13 +194,18 @@ export default function Treatments({ locale, copy }) {
         <div className={styles.grid}>
           {treatments.map((item) => (
             <article className={`${styles.card} ${item.featured ? styles.featured : ""}`} key={item.number}>
-              <div className={styles.top}><span>{item.number}</span><span>{item.tag}</span></div>
-              <div><h3>{item.title}</h3><p>{item.text}</p></div>
-              <div className={styles.cardActions}>
-                {locale === "es" && <Link className={styles.pageLink} href={assetPath(item.page)}>Ver tratamiento <ArrowIcon /></Link>}
-                <button type="button" className={styles.moreButton} onClick={() => openTreatment(item)}>
-                  {locale === "es" ? "Ver resumen" : copy.treatments[3]} <ArrowIcon />
-                </button>
+              <div className={styles.cardImage}>
+                <Image src={assetPath(item.image)} alt={item.imageAlt} fill sizes="(max-width: 700px) 100vw, 50vw" />
+              </div>
+              <div className={styles.cardBody}>
+                <div className={styles.top}><span>{item.number}</span><span>{item.tag}</span></div>
+                <div><h3>{item.title}</h3><p>{item.text}</p></div>
+                <div className={styles.cardActions}>
+                  {locale === "es" && <Link className={styles.pageLink} href={assetPath(item.page)}>Ver tratamiento <ArrowIcon /></Link>}
+                  <button type="button" className={styles.moreButton} onClick={() => openTreatment(item)}>
+                    {locale === "es" ? "Ver resumen" : copy.treatments[3]} <ArrowIcon />
+                  </button>
+                </div>
               </div>
             </article>
           ))}
