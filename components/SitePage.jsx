@@ -23,7 +23,13 @@ export default function SitePage({ locale = "es" }) {
     url: `${site.url.replace(/\/$/, "")}${text.path}`,
     telephone: "+54 9 11 2815 6799",
     sameAs: [site.instagram, site.tiktok],
-    address: { "@type": "PostalAddress", streetAddress: "Junín 246, 2.º A", addressLocality: "Ciudad Autónoma de Buenos Aires", addressCountry: "AR" },
+    image: `${site.url.replace(/\/$/, "")}/images/social/tomento-og.jpg`,
+    hasMap: site.googleMaps,
+    medicalSpecialty: "Trichology",
+    areaServed: { "@type": "City", name: "Ciudad Autónoma de Buenos Aires" },
+    geo: { "@type": "GeoCoordinates", latitude: -34.6065687, longitude: -58.3966271 },
+    address: { "@type": "PostalAddress", streetAddress: "Junín 246, 2.º A", addressLocality: "Ciudad Autónoma de Buenos Aires", addressRegion: "CABA", addressCountry: "AR" },
+    availableService: ["Microimplante capilar FUE", "Plasma rico en plaquetas capilar", "Mesoterapia capilar", "Microdermopigmentación capilar"].map((name) => ({ "@type": "MedicalTherapy", name })),
   };
 
   return (

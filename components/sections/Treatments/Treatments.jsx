@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import SectionHeading from "@/components/ui/SectionHeading/SectionHeading";
 import ArrowIcon from "@/components/ui/ArrowIcon/ArrowIcon";
 import { assetPath } from "@/lib/assets";
@@ -15,6 +16,7 @@ const treatmentMedia = [
     formValue: "Microimplante capilar FUE",
     tag: "Técnica FUE",
     featured: true,
+    page: "/tratamientos/microimplante-capilar-fue/",
     text: "Redistribución de unidades foliculares mediante una técnica mínimamente invasiva y personalizada.",
     image: "/images/clinic/microimplante-tomento.webp",
     imageAlt: "Judith De Vito durante la preparación de un microimplante capilar en Tomento",
@@ -36,6 +38,7 @@ const treatmentMedia = [
     title: "Plasma Rico en Plaquetas",
     formValue: "Plasma rico en plaquetas",
     tag: "PRP capilar",
+    page: "/tratamientos/prp-capilar/",
     text: "Tratamiento complementario orientado al fortalecimiento y cuidado del cabello.",
     image: "/images/clinic/prp-plasma.webp",
     imageAlt: "Muestra de plasma rico en plaquetas preparada en Tomento Capilar",
@@ -47,6 +50,7 @@ const treatmentMedia = [
     title: "Mesoterapia Capilar",
     formValue: "Mesoterapia capilar",
     tag: "Tratamiento personalizado",
+    page: "/tratamientos/mesoterapia-capilar/",
     text: "Aplicación localizada según las necesidades identificadas durante la evaluación.",
     image: "/images/clinic/mesoterapia-capilar-jeringa-tomento.webp",
     imageAlt: "Aplicación de mesoterapia capilar con jeringa y solución transparente en Tomento",
@@ -58,6 +62,7 @@ const treatmentMedia = [
     title: "Microdermopigmentación Capilar",
     formValue: "Microdermopigmentación capilar",
     tag: "Efecto visual de densidad",
+    page: "/tratamientos/microdermopigmentacion-capilar/",
     text: "Técnica orientada a recrear visualmente una mayor densidad capilar de manera personalizada.",
     image: "/images/clinic/diseno-capilar.webp",
     imageAlt: "Judith De Vito realizando el diseño previo de la línea capilar",
@@ -191,9 +196,12 @@ export default function Treatments({ locale, copy }) {
             <article className={`${styles.card} ${item.featured ? styles.featured : ""}`} key={item.number}>
               <div className={styles.top}><span>{item.number}</span><span>{item.tag}</span></div>
               <div><h3>{item.title}</h3><p>{item.text}</p></div>
-              <button type="button" className={styles.moreButton} onClick={() => openTreatment(item)}>
-                {copy.treatments[3]} <ArrowIcon />
-              </button>
+              <div className={styles.cardActions}>
+                {locale === "es" && <Link className={styles.pageLink} href={assetPath(item.page)}>Ver tratamiento <ArrowIcon /></Link>}
+                <button type="button" className={styles.moreButton} onClick={() => openTreatment(item)}>
+                  {locale === "es" ? "Ver resumen" : copy.treatments[3]} <ArrowIcon />
+                </button>
+              </div>
             </article>
           ))}
         </div>

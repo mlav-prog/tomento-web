@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { assetPath } from "@/lib/assets";
+import { trackEvent } from "@/lib/analytics";
 import styles from "./ConsultaOnlineForm.module.css";
 
 const initialData = {
@@ -37,6 +38,8 @@ export default function ConsultaOnlineForm() {
   const [submissionStatus, setSubmissionStatus] = useState("idle");
   const [photos, setPhotos] = useState({});
   const [photoProcessing, setPhotoProcessing] = useState("");
+  const startedTracked = useRef(false);
+  const photosTracked = useRef(false);
 
   const progress = useMemo(() => `${Math.round((step / 4) * 100)}%`, [step]);
 
@@ -44,6 +47,10 @@ export default function ConsultaOnlineForm() {
     const { name, value, checked, type } = event.target;
     setData((current) => ({ ...current, [name]: type === "checkbox" ? checked : value }));
     setValidationError("");
+    if (!startedTracked.current) {
+      startedTracked.current = true;
+      trackEvent("consulta_iniciada");
+    }
   }
 
   function toggleList(name, value) {
@@ -72,6 +79,7 @@ export default function ConsultaOnlineForm() {
         return;
       }
     }
+    trackEvent("consulta_paso_completado", { paso: step });
     setStep((current) => Math.min(4, current + 1));
     window.scrollTo({ top: 300, behavior: "smooth" });
   }
@@ -83,7 +91,14 @@ export default function ConsultaOnlineForm() {
     setValidationError("");
     try {
       const compressed = await compressPhoto(file, key);
-      setPhotos((current) => ({ ...current, [key]: compressed }));
+      setPhotos((current) => {
+        const next = { ...current, [key]: compressed };
+        if (Object.keys(next).length === photoOptions.length && !photosTracked.current) {
+          photosTracked.current = true;
+          trackEvent("consulta_fotos_completadas");
+        }
+        return next;
+      });
     } catch {
       setValidationError("No pudimos procesar esa imagen. Probá con una foto JPG, PNG o WEBP.");
       event.target.value = "";
@@ -111,8 +126,10 @@ export default function ConsultaOnlineForm() {
       });
 
       if (!response.ok) throw new Error("No se pudo enviar la consulta");
+      trackEvent("consulta_enviada");
       setSubmissionStatus("success");
     } catch {
+      trackEvent("consulta_error");
       setSubmissionStatus("error");
     }
   }
